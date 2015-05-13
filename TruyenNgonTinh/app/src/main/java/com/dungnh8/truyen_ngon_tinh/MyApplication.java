@@ -6,6 +6,7 @@ import android.util.Log;
 import com.dungnh8.truyen_ngon_tinh.business.BookBusiness;
 import com.dungnh8.truyen_ngon_tinh.network.BookNetwork;
 import com.dungnh8.truyen_ngon_tinh.network.MyVolley;
+import com.dungnh8.truyen_ngon_tinh.parser.BookParser;
 import com.dungnh8.truyen_ngon_tinh.utils.ImageLoaderUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -26,10 +27,6 @@ public class MyApplication extends Application {
         registerServices();
     }
 
-    private void registerAPI() {
-        ServiceRegistry.registerService(MyVolley.TAG, new MyVolley(getApplicationContext()));
-    }
-
     private void registerBusinesses() {
         ServiceRegistry.registerService(BookBusiness.TAG, new BookBusiness());
     }
@@ -38,14 +35,15 @@ public class MyApplication extends Application {
     }
 
     private void registerNetworks() {
+        ServiceRegistry.registerService(MyVolley.TAG, new MyVolley(getApplicationContext()));
         ServiceRegistry.registerService(BookNetwork.TAG, new BookNetwork());
     }
 
     private void registerParsers() {
+        ServiceRegistry.registerService(BookParser.TAG, new BookParser());
     }
 
     private void registerServices() {
-        registerAPI();
         registerParsers();
         registerNetworks();
         registerDataSources();

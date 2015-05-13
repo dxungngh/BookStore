@@ -1,5 +1,7 @@
 package com.dungnh8.truyen_ngon_tinh.business;
 
+import android.util.Log;
+
 import com.dungnh8.truyen_ngon_tinh.ServiceRegistry;
 import com.dungnh8.truyen_ngon_tinh.database.model.Book;
 import com.dungnh8.truyen_ngon_tinh.listener.OnGetBooksFromServerListener;
@@ -16,17 +18,16 @@ public class BookBusiness {
         bookNetwork = (BookNetwork) ServiceRegistry.getService(BookNetwork.TAG);
     }
 
-
-    public void getBooksFromServer(int bookType, int pageIndex, OnGetBooksFromServerListener listener) {
+    public void getBooksFromServer(int bookType, int pageIndex, final OnGetBooksFromServerListener listener) {
         bookNetwork.getBooksFromServer(bookType, pageIndex, new OnGetBooksFromServerListener() {
             @Override
             public void onSuccess(List<Book> result) {
-
+                Log.i(TAG, result.toString());
             }
 
             @Override
             public void onFailed(Throwable error) {
-
+                listener.onFailed(error);
             }
         });
     }
