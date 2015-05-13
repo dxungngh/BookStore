@@ -11,7 +11,12 @@
     <dimen name="sliding_menu_item_padding_left">20dp</dimen>
     <dimen name="sliding_menu_item_height">40dp</dimen>
 
-    <!-- text size -->
+    <!-- Text size -->
     <dimen name="text_size_tiny">12sp</dimen>
     <dimen name="text_size_small">15sp</dimen>
+
+    <!-- Fragment book list -->
+    <dimen name="fragment_book_list_search_height">35dp</dimen>
+    <dimen name="fragment_book_list_search_margin_vertical">5dp</dimen>
+    <dimen name="fragment_book_list_search_margin_horizontal">7dp</dimen>
 </resources>

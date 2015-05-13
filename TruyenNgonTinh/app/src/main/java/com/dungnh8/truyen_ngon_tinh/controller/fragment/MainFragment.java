@@ -4,12 +4,17 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.dungnh8.truyen_ngon_tinh.R;
+import com.dungnh8.truyen_ngon_tinh.config.ExtrasConfig;
 import com.dungnh8.truyen_ngon_tinh.controller.activity.MainActivity;
+import com.dungnh8.truyen_ngon_tinh.controller.fragment.tab.FavoriteTabFragment;
+import com.dungnh8.truyen_ngon_tinh.controller.fragment.tab.HistoryTabFragment;
+import com.dungnh8.truyen_ngon_tinh.controller.fragment.tab.NewBookTabFragment;
 
 public class MainFragment extends Fragment {
     private static final String TAG = MainFragment.class.getSimpleName();
@@ -36,18 +41,7 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         tabHost = (FragmentTabHost) rootView.findViewById(android.R.id.tabhost);
-        tabHost.setup(getActivity(), getActivity().getSupportFragmentManager(), android.R.id.tabcontent);
-
-        tabHost.addTab(
-            tabHost.newTabSpec("tab1").setIndicator(getString(R.string.history), null),
-            BookListTabFragment.class, null);
-        tabHost.addTab(
-            tabHost.newTabSpec("tab2").setIndicator(getString(R.string.new_book), null),
-            BookListTabFragment.class, null);
-        tabHost.addTab(
-            tabHost.newTabSpec("tab3").setIndicator(getString(R.string.favorite), null),
-            BookListTabFragment.class, null);
-
+        drawTabs();
         return rootView;
     }
 
@@ -56,5 +50,24 @@ public class MainFragment extends Fragment {
         super.onAttach(activity);
         ((MainActivity) activity).onSectionAttached(
             getArguments().getInt(ARG_SECTION_NUMBER));
+    }
+
+    private void drawTabs() {
+        Log.i(TAG, "draw tabs");
+        tabHost.setup(getActivity(), getChildFragmentManager(), android.R.id.tabcontent);
+        Bundle bundle = new Bundle();
+        bundle.putInt(ExtrasConfig.SELECTED_BOOK_TYPE, selectedBookType);
+
+        tabHost.addTab(
+            tabHost.newTabSpec("tab1").setIndicator(getString(R.string.history), null),
+            HistoryTabFragment.class, null);
+        tabHost.addTab(
+            tabHost.newTabSpec("tab2").setIndicator(getString(R.string.new_book), null),
+            NewBookTabFragment.class, bundle);
+        tabHost.addTab(
+            tabHost.newTabSpec("tab3").setIndicator(getString(R.string.favorite), null),
+            FavoriteTabFragment.class, null);
+
+        tabHost.setCurrentTab(1);
     }
 }

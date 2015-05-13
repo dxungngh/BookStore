@@ -1,4 +1,4 @@
-package com.dungnh8.truyen_ngon_tinh.controller.fragment;
+package com.dungnh8.truyen_ngon_tinh.controller.fragment.tab;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.dungnh8.truyen_ngon_tinh.R;
 
-public class BookListTabFragment extends Fragment {
+public class FavoriteTabFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
