@@ -1,0 +1,22 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimaryDark">@color/action_bar</item>
+        <item name="colorPrimary">@color/action_bar</item>
+        <item name="android:textColorTertiary">@android:color/white</item>
+    </style>
+
+    <style name="MyApp"/>
+
+    <!-- Sliding menu -->
+    <style name="MyApp.SlidingMenu" parent="MyApp"/>
+
+    <style name="MyApp.SlidingMenu.Item" parent="MyApp.SlidingMenu">
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textColor">@color/action_bar</item>
+        <item name="android:paddingLeft">@dimen/sliding_menu_item_padding_left</item>
+        <item name="android:height">@dimen/sliding_menu_item_height</item>
+    </style>
+
+</resources>

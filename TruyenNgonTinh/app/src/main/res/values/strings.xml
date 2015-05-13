@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Truyện Ngôn Tình</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="history">Đang Đọc</string>
+    <string name="new_book">Truyện Mới</string>
+    <string name="favorite">Yêu Thích</string>
+</resources>
