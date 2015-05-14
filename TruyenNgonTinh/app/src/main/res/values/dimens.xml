@@ -19,4 +19,12 @@
     <dimen name="fragment_book_list_search_height">35dp</dimen>
     <dimen name="fragment_book_list_search_margin_vertical">5dp</dimen>
     <dimen name="fragment_book_list_search_margin_horizontal">7dp</dimen>
+
+    <!-- Row book -->
+    <dimen name="row_book_padding_left">10dp</dimen>
+    <dimen name="row_book_padding_right">10dp</dimen>
+    <dimen name="row_book_padding_top">10dp</dimen>
+    <dimen name="row_book_padding_bottom">10dp</dimen>
+    <dimen name="row_book_avatar_width">100dp</dimen>
+    <dimen name="row_book_avatar_height">100dp</dimen>
 </resources>

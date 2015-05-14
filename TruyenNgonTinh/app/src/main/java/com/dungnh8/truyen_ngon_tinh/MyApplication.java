@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.dungnh8.truyen_ngon_tinh.business.BookBusiness;
+import com.dungnh8.truyen_ngon_tinh.database.datasource.BookDataSource;
 import com.dungnh8.truyen_ngon_tinh.network.BookNetwork;
 import com.dungnh8.truyen_ngon_tinh.network.MyVolley;
 import com.dungnh8.truyen_ngon_tinh.parser.BookParser;
@@ -32,6 +33,7 @@ public class MyApplication extends Application {
     }
 
     private void registerDataSources() {
+        ServiceRegistry.registerService(BookDataSource.TAG, new BookDataSource(getApplicationContext()));
     }
 
     private void registerNetworks() {

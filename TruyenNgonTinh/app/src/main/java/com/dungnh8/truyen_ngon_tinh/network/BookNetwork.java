@@ -25,7 +25,7 @@ public class BookNetwork {
     }
 
     public void getBooksFromServer(int bookType, int pageIndex, final OnGetBooksFromServerListener listener) {
-        String url = BookConfig.BOOK_TYPE_LINK[bookType];
+        String url = getUrl(bookType, pageIndex);
         MyRequest myRequest = new MyRequest(MyRequest.Method.GET, url,
             new Response.Listener<String>() {
                 @Override
@@ -47,5 +47,12 @@ public class BookNetwork {
                 }
             });
         volley.addToRequestQueue(myRequest);
+    }
+
+    private String getUrl(int bookType, int pageIndex) {
+        if (pageIndex > 1) {
+            return BookConfig.BOOK_TYPE_LINK[bookType] + "page/" + pageIndex + "/";
+        }
+        return BookConfig.BOOK_TYPE_LINK[bookType];
     }
 }

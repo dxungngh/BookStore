@@ -19,6 +19,9 @@ public class Book implements Parcelable {
         public static final String AUTHOR = "author";
         public static final String TYPE = "type";
         public static final String STATUS = "status";
+        public static final String IS_READ = "is_read";
+        public static final String IS_FAVORITE = "is_favorite";
+        public static final String UPDATED_AT = "updated_at";
     }
 
     @DatabaseField(id = true, canBeNull = false, columnName = Fields.ID)
@@ -44,6 +47,15 @@ public class Book implements Parcelable {
 
     @DatabaseField(columnName = Fields.STATUS)
     private String status;
+
+    @DatabaseField(columnName = Fields.IS_READ)
+    private boolean isRead = false;
+
+    @DatabaseField(columnName = Fields.IS_FAVORITE)
+    private boolean isFavorite = false;
+
+    @DatabaseField(columnName = Fields.UPDATED_AT)
+    private long updatedAt;
 
     public long getId() {
         return id;
@@ -109,6 +121,30 @@ public class Book implements Parcelable {
         this.status = status;
     }
 
+    public boolean isRead() {
+        return isRead;
+    }
+
+    public void setIsRead(boolean isRead) {
+        this.isRead = isRead;
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setIsFavorite(boolean isFavorite) {
+        this.isFavorite = isFavorite;
+    }
+
+    public long getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(long updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -120,6 +156,9 @@ public class Book implements Parcelable {
             ", author='" + author + '\'' +
             ", type='" + type + '\'' +
             ", status='" + status + '\'' +
+            ", isRead=" + isRead +
+            ", isFavorite=" + isFavorite +
+            ", updatedAt=" + updatedAt +
             '}';
     }
 
