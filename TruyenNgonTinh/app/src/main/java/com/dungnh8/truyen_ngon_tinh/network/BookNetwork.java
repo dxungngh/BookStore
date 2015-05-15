@@ -24,13 +24,8 @@ public class BookNetwork extends BaseNetwork {
         parser = (BookParser) ServiceRegistry.getService(BookParser.TAG);
     }
 
-    public void getBooksFromServer(int bookType, int pageIndex, int limit, final OnGetBooksFromServerListener listener) {
-        String url = BookConfig.BOOK_TYPE_LINK[bookType];
-        if (!TextUtils.isEmpty(url)) {
-            url += String.format("&start=%d&limit=%d", pageIndex * limit, limit);
-        } else {
-            url = getUrl(String.format("api?page=list-story&start=%d&limit=%d&type=new", pageIndex * limit, limit));
-        }
+    public void getBooksFromServer(boolean isSearching, String keyword, int bookType, int pageIndex, int limit, final OnGetBooksFromServerListener listener) {
+        String url = getUrl(isSearching, keyword, bookType, pageIndex, limit);
         Log.i(TAG, url);
         MyRequest request = new MyRequest(
             MyRequest.Method.GET,
@@ -53,5 +48,19 @@ public class BookNetwork extends BaseNetwork {
                 }
             });
         volley.addToRequestQueue(request);
+    }
+
+    private String getUrl(boolean isSearching, String keyword, int bookType, int pageIndex, int limit) {
+        String url = BookConfig.BOOK_TYPE_LINK[bookType];
+        if (!isSearching) {
+            if (!TextUtils.isEmpty(url)) {
+                url += String.format("&start=%d&limit=%d", pageIndex * limit, limit);
+            } else {
+                url = getUrl(String.format("api?page=list-story&start=%d&limit=%d&type=new", pageIndex * limit, limit));
+            }
+        } else {
+            url = getUrl(String.format("api?page=search&start=%d&limit=%d&keyword=%s", pageIndex * limit, limit, keyword));
+        }
+        return url;
     }
 }

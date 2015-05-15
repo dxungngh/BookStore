@@ -13,6 +13,8 @@
         android:layout_marginRight="@dimen/fragment_book_list_search_margin_horizontal"
         android:layout_marginTop="@dimen/fragment_book_list_search_margin_vertical"
         android:background="@drawable/search_edittext_bg"
+        android:imeActionLabel="@string/search"
+        android:imeOptions="actionSearch"
         android:textSize="@dimen/text_size_small"/>
 
     <ListView

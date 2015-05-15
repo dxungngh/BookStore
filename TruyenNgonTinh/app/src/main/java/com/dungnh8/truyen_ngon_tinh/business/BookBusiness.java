@@ -19,17 +19,18 @@ public class BookBusiness {
         dataSource = (BookDataSource) ServiceRegistry.getService(BookDataSource.TAG);
     }
 
-    public void getBooksFromServer(int bookType, int pageIndex, final OnGetBooksFromServerListener listener) {
-        network.getBooksFromServer(bookType, pageIndex, 10, new OnGetBooksFromServerListener() {
-            @Override
-            public void onSuccess(List<Book> result) {
-                listener.onSuccess(result);
-            }
+    public void getBooksFromServer(boolean isSearching, String keyword, int bookType, int pageIndex, final OnGetBooksFromServerListener listener) {
+        network.getBooksFromServer(isSearching, keyword, bookType, pageIndex, 10,
+            new OnGetBooksFromServerListener() {
+                @Override
+                public void onSuccess(List<Book> result) {
+                    listener.onSuccess(result);
+                }
 
-            @Override
-            public void onFailed(Throwable error) {
-                listener.onFailed(error);
-            }
-        });
+                @Override
+                public void onFailed(Throwable error) {
+                    listener.onFailed(error);
+                }
+            });
     }
 }

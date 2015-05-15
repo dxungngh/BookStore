@@ -10,4 +10,6 @@
 
     <string name="author">Tác giả:&#160;</string>
     <string name="cat_name">Chuyên mục:&#160;</string>
+
+    <string name="search">Search</string>
 </resources>
