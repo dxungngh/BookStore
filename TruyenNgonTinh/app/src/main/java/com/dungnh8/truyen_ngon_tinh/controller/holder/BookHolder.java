@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.dungnh8.truyen_ngon_tinh.R;
 import com.dungnh8.truyen_ngon_tinh.database.model.Book;
@@ -17,7 +18,8 @@ public class BookHolder extends BaseContentHolder {
     private static BookHolder holder;
 
     private Context context;
-    private ImageView avatar;
+    private ImageView avatarImageView;
+    private TextView titleTextView, authorTextView, newChapterTextView;
 
     private Book book;
 
@@ -28,11 +30,17 @@ public class BookHolder extends BaseContentHolder {
     }
 
     private void assignComponentView(View rowView) {
-        avatar = (ImageView) rowView.findViewById(R.id.row_book_avatar);
+        avatarImageView = (ImageView) rowView.findViewById(R.id.row_book_avatar);
+        titleTextView = (TextView) rowView.findViewById(R.id.row_book_title);
+        authorTextView = (TextView) rowView.findViewById(R.id.row_book_author);
+        newChapterTextView = (TextView) rowView.findViewById(R.id.row_book_new_chapter_title);
     }
 
     private void drawComponentView() {
-        ImageLoader.getInstance().displayImage(book.getAvatar(), avatar, ImageLoaderUtil.getDisplayOptions());
+        ImageLoader.getInstance().displayImage(book.getAvatar(), avatarImageView, ImageLoaderUtil.getDisplayOptions());
+        titleTextView.setText(book.getName());
+        authorTextView.setText(book.getAuthor());
+        newChapterTextView.setText(book.getNewChapterTitle());
     }
 
     @Override

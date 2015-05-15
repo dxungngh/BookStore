@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.dungnh8.truyen_ngon_tinh.config.DatabaseConfig;
 import com.dungnh8.truyen_ngon_tinh.database.model.Book;
+import com.dungnh8.truyen_ngon_tinh.database.model.BookType;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
@@ -18,6 +19,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String TAG = DatabaseHelper.class.getSimpleName();
 
     private Dao<Book, Integer> bookDao = null;
+    private Dao<BookType, Integer> bookTypeDao = null;
 
     public DatabaseHelper(Context context) {
         super(context, DatabaseConfig.DATABASE_NAME, null, DatabaseConfig.DATABASE_VERSION);
@@ -33,6 +35,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         try {
             Log.i(TAG, "create database");
             TableUtils.createTable(connectionSource, Book.class);
+            TableUtils.createTable(connectionSource, BookType.class);
         } catch (SQLException e) {
             Log.e(TAG, "onCreate", e);
             throw new RuntimeException(e);
@@ -70,6 +73,17 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             }
         }
         return bookDao;
+    }
+
+    public Dao<BookType, Integer> getBookTypeDao() {
+        if (null == bookTypeDao) {
+            try {
+                bookTypeDao = getDao(BookType.class);
+            } catch (java.sql.SQLException e) {
+                Log.e(TAG, "getBookTypeDao", e);
+            }
+        }
+        return bookTypeDao;
     }
 
     private void resetAllDatabase(SQLiteDatabase db) {

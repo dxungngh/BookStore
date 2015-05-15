@@ -17,6 +17,7 @@ import com.dungnh8.truyen_ngon_tinh.config.ExtrasConfig;
 import com.dungnh8.truyen_ngon_tinh.controller.adapter.BookAdapter;
 import com.dungnh8.truyen_ngon_tinh.database.model.Book;
 import com.dungnh8.truyen_ngon_tinh.listener.OnGetBooksFromServerListener;
+import com.dungnh8.truyen_ngon_tinh.utils.KeyboardUtil;
 
 import java.util.List;
 
@@ -50,6 +51,7 @@ public class NewBookTabFragment extends Fragment {
     public void onResume() {
         super.onResume();
         getBooksFromServer();
+        KeyboardUtil.hideSoftKeyboardOfEditText(getActivity(), searchEditText);
     }
 
     private void drawBooksList(final List<Book> books) {

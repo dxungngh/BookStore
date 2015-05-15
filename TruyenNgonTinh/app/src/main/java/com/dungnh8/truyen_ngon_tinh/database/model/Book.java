@@ -24,7 +24,8 @@ public class Book implements Parcelable {
         public static final String UPDATED_AT = "updated_at";
     }
 
-    @DatabaseField(id = true, canBeNull = false, columnName = Fields.ID)
+    @DatabaseField(allowGeneratedIdInsert = true, canBeNull = false, columnName = Fields.ID,
+        generatedId = true)
     private long id;
 
     @DatabaseField(columnName = Fields.AVATAR)

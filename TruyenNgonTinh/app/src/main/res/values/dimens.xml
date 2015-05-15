@@ -7,6 +7,9 @@
          https://developer.android.com/design/patterns/navigation-drawer.html -->
     <dimen name="navigation_drawer_width">240dp</dimen>
 
+    <!-- Launch screen -->
+    <dimen name="launch_screen_text_padding_bottom">20dp</dimen>
+
     <!-- Sliding menu -->
     <dimen name="sliding_menu_item_padding_left">20dp</dimen>
     <dimen name="sliding_menu_item_height">40dp</dimen>
@@ -14,6 +17,7 @@
     <!-- Text size -->
     <dimen name="text_size_tiny">12sp</dimen>
     <dimen name="text_size_small">15sp</dimen>
+    <dimen name="text_size_normal">17sp</dimen>
 
     <!-- Fragment book list -->
     <dimen name="fragment_book_list_search_height">35dp</dimen>

@@ -19,4 +19,26 @@
         <item name="android:height">@dimen/sliding_menu_item_height</item>
     </style>
 
+    <!-- Book row -->
+    <style name="MyApp.BookRow" parent="MyApp"/>
+
+    <style name="MyApp.BookRow.Title" parent="MyApp.BookRow">
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textColor">@color/action_bar</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="MyApp.BookRow.Label" parent="MyApp.BookRow">
+        <item name="android:textSize">@dimen/text_size_tiny</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="MyApp.BookRow.Content" parent="MyApp.BookRow">
+        <item name="android:textSize">@dimen/text_size_tiny</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
 </resources>

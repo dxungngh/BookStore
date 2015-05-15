@@ -7,4 +7,7 @@
     <string name="history">Đang Đọc</string>
     <string name="new_book">Truyện Mới</string>
     <string name="favorite">Yêu Thích</string>
+
+    <string name="author">Tác giả:&#160;</string>
+    <string name="new_chapter">Chương mới:&#160;</string>
 </resources>

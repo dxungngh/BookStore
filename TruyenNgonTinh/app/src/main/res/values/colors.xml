@@ -2,4 +2,5 @@
 <resources>
     <color name="sliding_menu">#DBDBDB</color>
     <color name="action_bar">#FA9DCF</color>
+    <color name="gray">#C0C0C0</color>
 </resources>

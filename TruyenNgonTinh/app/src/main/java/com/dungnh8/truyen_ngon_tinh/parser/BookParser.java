@@ -38,18 +38,20 @@ public class BookParser {
             String avatar = imgTag.attr("src");
             String name = imgTag.attr("alt");
 
-            Element authorTag = liTag.select("div[class=adiv2hidden]").get(1);
+            Elements tags = liTag.select("div[class=adiv2hidden]");
+            Element authorTag = tags.get(1);
             String author = authorTag.select("a").text();
 
-            Element newChapterTag = liTag.select("div[class=adiv2hidden]").get(2);
-            String newChapter = newChapterTag.select("a").text();
-
             Book book = new Book();
+            if (tags.size() > 2) {
+                Element newChapterTag = tags.get(2);
+                String newChapter = newChapterTag.select("a").text();
+                book.setNewChapterTitle(newChapter);
+            }
             book.setUrl(url);
             book.setAvatar(avatar);
             book.setName(name);
             book.setAuthor(author);
-            book.setNewChapterTitle(newChapter);
             return book;
         } catch (Exception e) {
             Log.e(TAG, "parseBook", e);
