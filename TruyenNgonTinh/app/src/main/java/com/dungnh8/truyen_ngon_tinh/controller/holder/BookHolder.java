@@ -19,7 +19,7 @@ public class BookHolder extends BaseContentHolder {
 
     private Context context;
     private ImageView avatarImageView;
-    private TextView titleTextView, authorTextView, newChapterTextView;
+    private TextView titleTextView, authorTextView, catNameTextView;
 
     private Book book;
 
@@ -33,14 +33,14 @@ public class BookHolder extends BaseContentHolder {
         avatarImageView = (ImageView) rowView.findViewById(R.id.row_book_avatar);
         titleTextView = (TextView) rowView.findViewById(R.id.row_book_title);
         authorTextView = (TextView) rowView.findViewById(R.id.row_book_author);
-        newChapterTextView = (TextView) rowView.findViewById(R.id.row_book_new_chapter_title);
+        catNameTextView = (TextView) rowView.findViewById(R.id.row_book_cat_name);
     }
 
     private void drawComponentView() {
-        ImageLoader.getInstance().displayImage(book.getAvatar(), avatarImageView, ImageLoaderUtil.getDisplayOptions());
-        titleTextView.setText(book.getName());
+        ImageLoader.getInstance().displayImage(book.getThumbnail(), avatarImageView, ImageLoaderUtil.getDisplayOptions());
+        titleTextView.setText(book.getTitle());
         authorTextView.setText(book.getAuthor());
-        newChapterTextView.setText(book.getNewChapterTitle());
+        catNameTextView.setText(book.getCatName());
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.dungnh8.truyen_ngon_tinh.database.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -12,13 +13,16 @@ public class Book implements Parcelable {
 
     public static class Fields {
         public static final String ID = "id";
-        public static final String AVATAR = "avatar";
-        public static final String NAME = "name";
-        public static final String URL = "url";
-        public static final String NEW_CHAPTER_TITLE = "new_chapter_title";
+        public static final String SERVER_ID = "server_id";
+        public static final String TITLE = "title";
+        public static final String DESCRIPTION = "description";
+        public static final String API = "api";
+        public static final String THUMBNAIL = "thumbnail";
+        public static final String VIEW = "view";
         public static final String AUTHOR = "author";
-        public static final String TYPE = "type";
+        public static final String CAT_NAME = "cat_name";
         public static final String STATUS = "status";
+        public static final String TOTAL_OF_CHAPS = "total_of_chaps";
         public static final String IS_READ = "is_read";
         public static final String IS_FAVORITE = "is_favorite";
         public static final String UPDATED_AT = "updated_at";
@@ -28,26 +32,35 @@ public class Book implements Parcelable {
         generatedId = true)
     private long id;
 
-    @DatabaseField(columnName = Fields.AVATAR)
-    private String avatar;
+    @DatabaseField(columnName = Fields.SERVER_ID)
+    private long serverId;
 
-    @DatabaseField(columnName = Fields.NAME)
-    private String name;
+    @DatabaseField(columnName = Fields.TITLE)
+    private String title;
 
-    @DatabaseField(columnName = Fields.URL)
-    private String url;
+    @DatabaseField(columnName = Fields.DESCRIPTION)
+    private String description;
 
-    @DatabaseField(columnName = Fields.NEW_CHAPTER_TITLE)
-    private String newChapterTitle;
+    @DatabaseField(columnName = Fields.API)
+    private String api;
+
+    @DatabaseField(columnName = Fields.THUMBNAIL)
+    private String thumbnail;
+
+    @DatabaseField(columnName = Fields.VIEW)
+    private String view;
 
     @DatabaseField(columnName = Fields.AUTHOR)
     private String author;
 
-    @DatabaseField(columnName = Fields.TYPE)
-    private String type;
+    @DatabaseField(columnName = Fields.CAT_NAME)
+    private String catName;
 
     @DatabaseField(columnName = Fields.STATUS)
     private String status;
+
+    @DatabaseField(columnName = Fields.TOTAL_OF_CHAPS)
+    private String totalOfChaps;
 
     @DatabaseField(columnName = Fields.IS_READ)
     private boolean isRead = false;
@@ -66,60 +79,104 @@ public class Book implements Parcelable {
         this.id = id;
     }
 
-    public String getAvatar() {
-        return avatar;
+    @JsonProperty("id")
+    public long getServerId() {
+        return serverId;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    @JsonProperty("id")
+    public void setServerId(long serverId) {
+        this.serverId = serverId;
     }
 
-    public String getName() {
-        return name;
+    @JsonProperty("title")
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @JsonProperty("title")
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getUrl() {
-        return url;
+    @JsonProperty("description")
+    public String getDescription() {
+        return description;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    @JsonProperty("description")
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getNewChapterTitle() {
-        return newChapterTitle;
+    @JsonProperty("api")
+    public String getApi() {
+        return api;
     }
 
-    public void setNewChapterTitle(String newChapterTitle) {
-        this.newChapterTitle = newChapterTitle;
+    @JsonProperty("api")
+    public void setApi(String api) {
+        this.api = api;
     }
 
+    @JsonProperty("thumbnail")
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    @JsonProperty("thumbnail")
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    @JsonProperty("view")
+    public String getView() {
+        return view;
+    }
+
+    @JsonProperty("view")
+    public void setView(String view) {
+        this.view = view;
+    }
+
+    @JsonProperty("author")
     public String getAuthor() {
         return author;
     }
 
+    @JsonProperty("author")
     public void setAuthor(String author) {
         this.author = author;
     }
 
-    public String getType() {
-        return type;
+    @JsonProperty("cat_name")
+    public String getCatName() {
+        return catName;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    @JsonProperty("cat_name")
+    public void setCatName(String catName) {
+        this.catName = catName;
     }
 
+    @JsonProperty("status")
     public String getStatus() {
         return status;
     }
 
+    @JsonProperty("status")
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @JsonProperty("total_of_chaps")
+    public String getTotalOfChaps() {
+        return totalOfChaps;
+    }
+
+    @JsonProperty("total_of_chaps")
+    public void setTotalOfChaps(String totalOfChaps) {
+        this.totalOfChaps = totalOfChaps;
     }
 
     public boolean isRead() {
@@ -150,13 +207,16 @@ public class Book implements Parcelable {
     public String toString() {
         return "Book{" +
             "id=" + id +
-            ", avatar='" + avatar + '\'' +
-            ", name='" + name + '\'' +
-            ", url='" + url + '\'' +
-            ", newChapterTitle='" + newChapterTitle + '\'' +
+            ", serverId=" + serverId +
+            ", title='" + title + '\'' +
+            ", description='" + description + '\'' +
+            ", api='" + api + '\'' +
+            ", thumbnail='" + thumbnail + '\'' +
+            ", view=" + view +
             ", author='" + author + '\'' +
-            ", type='" + type + '\'' +
+            ", catName='" + catName + '\'' +
             ", status='" + status + '\'' +
+            ", totalOfChaps='" + totalOfChaps + '\'' +
             ", isRead=" + isRead +
             ", isFavorite=" + isFavorite +
             ", updatedAt=" + updatedAt +

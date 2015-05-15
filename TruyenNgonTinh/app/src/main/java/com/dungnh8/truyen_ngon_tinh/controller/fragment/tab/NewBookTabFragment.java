@@ -77,6 +77,7 @@ public class NewBookTabFragment extends Fragment {
 
             @Override
             public void onFailed(Throwable error) {
+                Log.e(TAG, "getBooksFromServer", error);
             }
         });
     }

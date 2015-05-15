@@ -58,10 +58,10 @@
                 style="@style/MyApp.BookRow.Label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/new_chapter"/>
+                android:text="@string/cat_name"/>
 
             <TextView
-                android:id="@+id/row_book_new_chapter_title"
+                android:id="@+id/row_book_cat_name"
                 style="@style/MyApp.BookRow.Content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
