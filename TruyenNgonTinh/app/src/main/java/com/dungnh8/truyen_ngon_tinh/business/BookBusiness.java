@@ -1,7 +1,5 @@
 package com.dungnh8.truyen_ngon_tinh.business;
 
-import android.util.Log;
-
 import com.dungnh8.truyen_ngon_tinh.ServiceRegistry;
 import com.dungnh8.truyen_ngon_tinh.database.datasource.BookDataSource;
 import com.dungnh8.truyen_ngon_tinh.database.model.Book;
@@ -25,7 +23,6 @@ public class BookBusiness {
         network.getBooksFromServer(bookType, pageIndex, 10, new OnGetBooksFromServerListener() {
             @Override
             public void onSuccess(List<Book> result) {
-                Log.i(TAG, result.toString());
                 listener.onSuccess(result);
             }
 
@@ -34,9 +31,5 @@ public class BookBusiness {
                 listener.onFailed(error);
             }
         });
-    }
-
-    private void mergeBooks(List<Book> serverBooks) {
-
     }
 }

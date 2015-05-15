@@ -49,15 +49,6 @@ public class BookAdapter extends BaseAdapter {
     }
 
     @Override
-    public int getViewTypeCount() {
-        int count = getCount();
-        if (count == 0) {
-            return 1;
-        }
-        return count + 5;
-    }
-
-    @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         Book book = getItem(position);
         BookHolder holder;
