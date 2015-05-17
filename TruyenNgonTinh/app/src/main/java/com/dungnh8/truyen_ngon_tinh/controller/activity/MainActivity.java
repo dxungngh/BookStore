@@ -24,22 +24,24 @@ public class MainActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mNavigationDrawerFragment = (NavigationDrawerFragment)
-            getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
-
-        mNavigationDrawerFragment.setUp(
-            R.id.navigation_drawer,
-            (DrawerLayout) findViewById(R.id.drawer_layout));
+        drawNavigationDrawerFragment();
     }
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-            .replace(R.id.container, MainFragment.newInstance(position + 1))
+            .replace(R.id.main_container, MainFragment.newInstance(position + 1))
             .commit();
+    }
+
+    private void drawNavigationDrawerFragment() {
+        mNavigationDrawerFragment = (NavigationDrawerFragment)
+            getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+        mTitle = getTitle();
+        mNavigationDrawerFragment.setUp(
+            R.id.navigation_drawer,
+            (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
     public void onSectionAttached(int number) {
@@ -52,6 +54,7 @@ public class MainActivity extends ActionBarActivity
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_drawer);
     }
 
     @Override

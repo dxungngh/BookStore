@@ -1,14 +1,13 @@
 package com.dungnh8.truyen_ngon_tinh.database.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.io.Serializable;
+
 @DatabaseTable(tableName = "book_type")
-public class BookType implements Parcelable {
+public class BookType implements Serializable {
     public static class Fields {
         public static final String ID = "id";
         public static final String SERVER_ID = "server_id";
@@ -114,14 +113,5 @@ public class BookType implements Parcelable {
             ", api='" + api + '\'' +
             ", parentId=" + parentId +
             '}';
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
     }
 }

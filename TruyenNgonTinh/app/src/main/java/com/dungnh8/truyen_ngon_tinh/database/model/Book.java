@@ -1,14 +1,13 @@
 package com.dungnh8.truyen_ngon_tinh.database.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.io.Serializable;
+
 @DatabaseTable(tableName = "book")
-public class Book implements Parcelable {
+public class Book implements Serializable {
     private static final String TAG = Book.class.getSimpleName();
 
     public static class Fields {
@@ -221,14 +220,5 @@ public class Book implements Parcelable {
             ", isFavorite=" + isFavorite +
             ", updatedAt=" + updatedAt +
             '}';
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
     }
 }

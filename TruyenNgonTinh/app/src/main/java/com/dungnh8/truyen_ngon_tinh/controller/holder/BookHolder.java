@@ -1,6 +1,7 @@
 package com.dungnh8.truyen_ngon_tinh.controller.holder;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dungnh8.truyen_ngon_tinh.R;
+import com.dungnh8.truyen_ngon_tinh.config.ExtrasConfig;
+import com.dungnh8.truyen_ngon_tinh.controller.activity.BookDetailActivity;
 import com.dungnh8.truyen_ngon_tinh.database.model.Book;
 import com.dungnh8.truyen_ngon_tinh.utils.ImageLoaderUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -20,6 +23,7 @@ public class BookHolder extends BaseContentHolder {
     private Context context;
     private ImageView avatarImageView;
     private TextView titleTextView, authorTextView, catNameTextView;
+    private View rowView;
 
     private Book book;
 
@@ -49,16 +53,29 @@ public class BookHolder extends BaseContentHolder {
         rowView = layoutInflater.inflate(R.layout.row_book, parent, false);
         assignComponentView(rowView);
         setConvertView(rowView);
-        setALlListeners();
         rowView.setTag(holder);
+        this.rowView = rowView;
+        setALlListeners();
     }
 
     private void setALlListeners() {
+        setRowClickListener();
     }
 
     @Override
     public void setElements(Object obj) {
         book = (Book) obj;
         drawComponentView();
+    }
+
+    private void setRowClickListener() {
+        rowView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, BookDetailActivity.class);
+                intent.putExtra(ExtrasConfig.BOOK, book);
+                context.startActivity(intent);
+            }
+        });
     }
 }
