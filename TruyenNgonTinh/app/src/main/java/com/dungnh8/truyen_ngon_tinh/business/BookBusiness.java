@@ -33,4 +33,8 @@ public class BookBusiness {
                 }
             });
     }
+
+    public Book getBookFromDatabase(long serverBookId) {
+        return dataSource.getBookByServerId(serverBookId);
+    }
 }

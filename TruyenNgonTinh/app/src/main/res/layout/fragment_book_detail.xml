@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+
+        <ImageView
+            android:id="@+id/fragment_book_detail_image"
+            android:layout_width="@dimen/book_detail_avatar_width"
+            android:layout_height="@dimen/book_detail_avatar_height"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:paddingBottom="@dimen/row_book_padding_bottom"
+            android:paddingLeft="@dimen/row_book_padding_left"
+            android:paddingRight="@dimen/row_book_padding_right"
+            android:paddingTop="@dimen/row_book_padding_top"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/book_detail_avatar_height"
+            android:layout_toRightOf="@id/fragment_book_detail_image"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/fragment_book_detail_title"
+                style="@style/MyApp.BookDetail.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/MyApp.BookRow.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/author"/>
+
+                <TextView
+                    android:id="@+id/fragment_book_detail_author"
+                    style="@style/MyApp.BookRow.Content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/MyApp.BookRow.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cat_name"/>
+
+                <TextView
+                    android:id="@+id/fragment_book_detail_cat_name"
+                    style="@style/MyApp.BookRow.Content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/fragment_book_detail_short_content"
+                style="@style/MyApp.BookDetail.Description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

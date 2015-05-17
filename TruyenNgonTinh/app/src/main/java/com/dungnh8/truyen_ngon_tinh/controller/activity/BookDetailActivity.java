@@ -7,6 +7,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
 import com.dungnh8.truyen_ngon_tinh.R;
+import com.dungnh8.truyen_ngon_tinh.ServiceRegistry;
+import com.dungnh8.truyen_ngon_tinh.business.BookBusiness;
 import com.dungnh8.truyen_ngon_tinh.config.ExtrasConfig;
 import com.dungnh8.truyen_ngon_tinh.controller.fragment.BookDetailFragment;
 import com.dungnh8.truyen_ngon_tinh.database.model.Book;
@@ -15,6 +17,8 @@ public class BookDetailActivity extends ActionBarActivity {
     private static final String TAG = BookDetailActivity.class.getSimpleName();
 
     private Book book;
+
+    private BookBusiness bookBusiness;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,5 +59,11 @@ public class BookDetailActivity extends ActionBarActivity {
 
     private void initData() {
         book = (Book) getIntent().getSerializableExtra(ExtrasConfig.BOOK);
+        bookBusiness = (BookBusiness) ServiceRegistry.getService(BookBusiness.TAG);
+
+        Book tmpBook = bookBusiness.getBookFromDatabase(book.getServerId());
+        if (tmpBook != null) {
+            book = tmpBook;
+        }
     }
 }

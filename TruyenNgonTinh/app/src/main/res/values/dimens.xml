@@ -29,6 +29,10 @@
     <dimen name="row_book_padding_right">10dp</dimen>
     <dimen name="row_book_padding_top">10dp</dimen>
     <dimen name="row_book_padding_bottom">10dp</dimen>
-    <dimen name="row_book_avatar_width">100dp</dimen>
+    <dimen name="row_book_avatar_width">80dp</dimen>
     <dimen name="row_book_avatar_height">100dp</dimen>
+
+    <!-- Book detail -->
+    <dimen name="book_detail_avatar_width">90dp</dimen>
+    <dimen name="book_detail_avatar_height">120dp</dimen>
 </resources>

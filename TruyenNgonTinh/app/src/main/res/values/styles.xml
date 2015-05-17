@@ -31,14 +31,28 @@
 
     <style name="MyApp.BookRow.Label" parent="MyApp.BookRow">
         <item name="android:textSize">@dimen/text_size_tiny</item>
-        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textColor">@android:color/black</item>
         <item name="android:singleLine">true</item>
     </style>
 
     <style name="MyApp.BookRow.Content" parent="MyApp.BookRow">
         <item name="android:textSize">@dimen/text_size_tiny</item>
-        <item name="android:textColor">@color/gray</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
         <item name="android:singleLine">true</item>
+    </style>
+
+    <!-- Book Detail -->
+    <style name="MyApp.BookDetail" parent="MyApp"/>
+
+    <style name="MyApp.BookDetail.Title" parent="MyApp.BookDetail">
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textColor">@color/action_bar</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="MyApp.BookDetail.Description" parent="MyApp.BookDetail">
+        <item name="android:textSize">@dimen/text_size_tiny</item>
+        <item name="android:textColor">@android:color/black</item>
     </style>
 
 </resources>
