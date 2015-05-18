@@ -3,15 +3,15 @@ package com.dungnh8.truyen_ngon_tinh.controller.activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
 import com.dungnh8.truyen_ngon_tinh.R;
 import com.dungnh8.truyen_ngon_tinh.config.ExtrasConfig;
+import com.dungnh8.truyen_ngon_tinh.controller.BaseActivity;
 import com.dungnh8.truyen_ngon_tinh.controller.fragment.ChapDetailFragment;
 import com.dungnh8.truyen_ngon_tinh.database.model.Chap;
 
-public class ChapDetailActivity extends ActionBarActivity {
+public class ChapDetailActivity extends BaseActivity {
     private static final String TAG = ChapDetailActivity.class.getSimpleName();
 
     private Chap chap;

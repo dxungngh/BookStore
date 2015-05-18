@@ -17,11 +17,18 @@
         android:imeOptions="actionSearch"
         android:textSize="@dimen/text_size_small"/>
 
+    <com.startapp.android.publish.banner.Banner
+        android:id="@+id/startAppBanner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_book_list_search"
+        android:layout_centerHorizontal="true"/>
+
     <ListView
         android:id="@+id/fragment_book_list_books"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/fragment_book_list_search"
+        android:layout_below="@id/startAppBanner"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="1dp"/>
 

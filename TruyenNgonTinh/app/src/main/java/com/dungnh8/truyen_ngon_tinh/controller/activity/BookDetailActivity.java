@@ -3,17 +3,17 @@ package com.dungnh8.truyen_ngon_tinh.controller.activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
 import com.dungnh8.truyen_ngon_tinh.R;
 import com.dungnh8.truyen_ngon_tinh.ServiceRegistry;
 import com.dungnh8.truyen_ngon_tinh.business.BookBusiness;
 import com.dungnh8.truyen_ngon_tinh.config.ExtrasConfig;
+import com.dungnh8.truyen_ngon_tinh.controller.BaseActivity;
 import com.dungnh8.truyen_ngon_tinh.controller.fragment.BookDetailFragment;
 import com.dungnh8.truyen_ngon_tinh.database.model.Book;
 
-public class BookDetailActivity extends ActionBarActivity {
+public class BookDetailActivity extends BaseActivity {
     private static final String TAG = BookDetailActivity.class.getSimpleName();
 
     private Book book;

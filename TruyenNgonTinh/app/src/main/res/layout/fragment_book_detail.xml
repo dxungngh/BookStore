@@ -79,11 +79,18 @@
 
     </RelativeLayout>
 
+    <com.startapp.android.publish.banner.Banner
+        android:id="@+id/startAppBanner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_book_detail_description"
+        android:layout_centerHorizontal="true"/>
+
     <ListView
         android:id="@+id/fragment_book_detail_chaps"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/fragment_book_detail_description"
+        android:layout_below="@id/startAppBanner"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="1dp"/>
 

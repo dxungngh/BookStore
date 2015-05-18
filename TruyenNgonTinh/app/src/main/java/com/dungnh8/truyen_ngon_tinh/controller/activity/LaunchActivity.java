@@ -9,8 +9,10 @@ import android.util.Log;
 import com.dungnh8.truyen_ngon_tinh.R;
 import com.dungnh8.truyen_ngon_tinh.ServiceRegistry;
 import com.dungnh8.truyen_ngon_tinh.business.BookTypeBusiness;
+import com.dungnh8.truyen_ngon_tinh.config.AdvertiseConfig;
 import com.dungnh8.truyen_ngon_tinh.database.model.BookType;
 import com.dungnh8.truyen_ngon_tinh.listener.OnGetBookTypesListener;
+import com.startapp.android.publish.StartAppSDK;
 
 import java.util.List;
 
@@ -56,5 +58,6 @@ public class LaunchActivity extends Activity {
 
     private void initData() {
         BookTypeBusiness = (BookTypeBusiness) ServiceRegistry.getService(BookTypeBusiness.TAG);
+        StartAppSDK.init(this, AdvertiseConfig.ACCOUNT_ID, AdvertiseConfig.APP_ID, true);
     }
 }
