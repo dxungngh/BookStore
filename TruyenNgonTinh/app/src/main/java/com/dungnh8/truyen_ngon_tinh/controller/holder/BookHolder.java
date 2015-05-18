@@ -36,14 +36,12 @@ public class BookHolder extends BaseContentHolder {
     private void assignComponentView(View rowView) {
         avatarImageView = (ImageView) rowView.findViewById(R.id.row_book_avatar);
         titleTextView = (TextView) rowView.findViewById(R.id.row_book_title);
-        authorTextView = (TextView) rowView.findViewById(R.id.row_book_author);
         catNameTextView = (TextView) rowView.findViewById(R.id.row_book_cat_name);
     }
 
     private void drawComponentView() {
         ImageLoader.getInstance().displayImage(book.getThumbnail(), avatarImageView, ImageLoaderUtil.getDisplayOptions());
         titleTextView.setText(book.getTitle());
-        authorTextView.setText(book.getAuthor());
         catNameTextView.setText(book.getCatName());
     }
 

@@ -29,8 +29,8 @@
     <dimen name="row_book_padding_right">10dp</dimen>
     <dimen name="row_book_padding_top">10dp</dimen>
     <dimen name="row_book_padding_bottom">10dp</dimen>
-    <dimen name="row_book_avatar_width">80dp</dimen>
-    <dimen name="row_book_avatar_height">100dp</dimen>
+    <dimen name="row_book_avatar_width">60dp</dimen>
+    <dimen name="row_book_avatar_height">80dp</dimen>
 
     <!-- Book detail -->
     <dimen name="book_detail_avatar_width">90dp</dimen>
@@ -39,6 +39,6 @@
     <!-- Row chap -->
     <dimen name="row_chap_padding_left">10dp</dimen>
     <dimen name="row_chap_padding_right">10dp</dimen>
-    <dimen name="row_chap_padding_top">10dp</dimen>
-    <dimen name="row_chap_padding_bottom">10dp</dimen>
+    <dimen name="row_chap_padding_top">15dp</dimen>
+    <dimen name="row_chap_padding_bottom">15dp</dimen>
 </resources>
