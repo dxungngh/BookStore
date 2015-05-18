@@ -7,17 +7,14 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
 import com.dungnh8.truyen_ngon_tinh.R;
-import com.dungnh8.truyen_ngon_tinh.ServiceRegistry;
-import com.dungnh8.truyen_ngon_tinh.business.BookBusiness;
 import com.dungnh8.truyen_ngon_tinh.config.ExtrasConfig;
-import com.dungnh8.truyen_ngon_tinh.controller.fragment.BookDetailFragment;
-import com.dungnh8.truyen_ngon_tinh.database.model.Book;
+import com.dungnh8.truyen_ngon_tinh.controller.fragment.ChapDetailFragment;
+import com.dungnh8.truyen_ngon_tinh.database.model.Chap;
 
-public class BookDetailActivity extends ActionBarActivity {
-    private static final String TAG = BookDetailActivity.class.getSimpleName();
+public class ChapDetailActivity extends ActionBarActivity {
+    private static final String TAG = ChapDetailActivity.class.getSimpleName();
 
-    private Book book;
-    private BookBusiness bookBusiness;
+    private Chap chap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +37,14 @@ public class BookDetailActivity extends ActionBarActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(book.getTitle());
+        actionBar.setTitle(chap.getTitle());
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     private void drawBookDetailFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-            .replace(R.id.book_detail_container, BookDetailFragment.newInstance(book))
+            .replace(R.id.book_detail_container, ChapDetailFragment.newInstance(chap))
             .commit();
     }
 
@@ -57,12 +54,6 @@ public class BookDetailActivity extends ActionBarActivity {
     }
 
     private void initData() {
-        book = (Book) getIntent().getSerializableExtra(ExtrasConfig.BOOK);
-        bookBusiness = (BookBusiness) ServiceRegistry.getService(BookBusiness.TAG);
-
-        Book tmpBook = bookBusiness.getBookFromDatabase(book.getServerId());
-        if (tmpBook != null) {
-            book = tmpBook;
-        }
+        chap = (Chap) getIntent().getSerializableExtra(ExtrasConfig.CHAP);
     }
 }

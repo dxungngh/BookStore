@@ -3,6 +3,8 @@ package com.dungnh8.truyen_ngon_tinh.business;
 import com.dungnh8.truyen_ngon_tinh.ServiceRegistry;
 import com.dungnh8.truyen_ngon_tinh.database.datasource.BookDataSource;
 import com.dungnh8.truyen_ngon_tinh.database.model.Book;
+import com.dungnh8.truyen_ngon_tinh.database.model.Chap;
+import com.dungnh8.truyen_ngon_tinh.listener.OnGetBookDetailListener;
 import com.dungnh8.truyen_ngon_tinh.listener.OnGetBooksFromServerListener;
 import com.dungnh8.truyen_ngon_tinh.network.BookNetwork;
 
@@ -17,6 +19,20 @@ public class BookBusiness {
     public BookBusiness() {
         network = (BookNetwork) ServiceRegistry.getService(BookNetwork.TAG);
         dataSource = (BookDataSource) ServiceRegistry.getService(BookDataSource.TAG);
+    }
+
+    public void getBookDetail(String api, int index, final OnGetBookDetailListener listener) {
+        network.getBookDetail(api, index, new OnGetBookDetailListener() {
+            @Override
+            public void onSuccess(List<Chap> chaps) {
+                listener.onSuccess(chaps);
+            }
+
+            @Override
+            public void onFailed(Throwable error) {
+                listener.onFailed(error);
+            }
+        });
     }
 
     public void getBooksFromServer(boolean isSearching, String keyword, int bookType, int pageIndex, final OnGetBooksFromServerListener listener) {

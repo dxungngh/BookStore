@@ -8,6 +8,7 @@ import android.util.Log;
 import com.dungnh8.truyen_ngon_tinh.config.DatabaseConfig;
 import com.dungnh8.truyen_ngon_tinh.database.model.Book;
 import com.dungnh8.truyen_ngon_tinh.database.model.BookType;
+import com.dungnh8.truyen_ngon_tinh.database.model.Chap;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
@@ -20,6 +21,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     private Dao<Book, Integer> bookDao = null;
     private Dao<BookType, Integer> bookTypeDao = null;
+    private Dao<Chap, Integer> chapDao = null;
 
     public DatabaseHelper(Context context) {
         super(context, DatabaseConfig.DATABASE_NAME, null, DatabaseConfig.DATABASE_VERSION);
@@ -36,6 +38,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             Log.i(TAG, "create database");
             TableUtils.createTable(connectionSource, Book.class);
             TableUtils.createTable(connectionSource, BookType.class);
+            TableUtils.createTable(connectionSource, Chap.class);
         } catch (SQLException e) {
             Log.e(TAG, "onCreate", e);
             throw new RuntimeException(e);
@@ -49,7 +52,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
                           int newVersion) {
         try {
             Log.i(TAG, "upgrade: " + oldVersion + "--" + newVersion);
-            if (oldVersion < 41 || (oldVersion > newVersion)) {
+            if (oldVersion < 2 || (oldVersion > newVersion)) {
                 resetAllDatabase(db);
             } else if (oldVersion < newVersion) {
                 for (int i = oldVersion; i < newVersion; i++) {
@@ -84,6 +87,17 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             }
         }
         return bookTypeDao;
+    }
+
+    public Dao<Chap, Integer> getChapDao() {
+        if (null == chapDao) {
+            try {
+                chapDao = getDao(Chap.class);
+            } catch (java.sql.SQLException e) {
+                Log.e(TAG, "getChapDao", e);
+            }
+        }
+        return chapDao;
     }
 
     private void resetAllDatabase(SQLiteDatabase db) {

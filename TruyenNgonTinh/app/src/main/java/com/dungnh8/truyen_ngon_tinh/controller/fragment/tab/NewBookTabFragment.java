@@ -145,7 +145,6 @@ public class NewBookTabFragment extends Fragment {
                     }
                 }
             }
-
         );
     }
 

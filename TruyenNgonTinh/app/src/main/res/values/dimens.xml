@@ -35,4 +35,10 @@
     <!-- Book detail -->
     <dimen name="book_detail_avatar_width">90dp</dimen>
     <dimen name="book_detail_avatar_height">120dp</dimen>
+
+    <!-- Row chap -->
+    <dimen name="row_chap_padding_left">10dp</dimen>
+    <dimen name="row_chap_padding_right">10dp</dimen>
+    <dimen name="row_chap_padding_top">10dp</dimen>
+    <dimen name="row_chap_padding_bottom">10dp</dimen>
 </resources>

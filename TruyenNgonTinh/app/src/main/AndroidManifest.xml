@@ -29,6 +29,9 @@
         <activity
             android:name=".controller.activity.BookDetailActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".controller.activity.ChapDetailActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

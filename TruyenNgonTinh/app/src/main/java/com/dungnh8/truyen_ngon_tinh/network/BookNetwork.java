@@ -8,6 +8,8 @@ import com.android.volley.VolleyError;
 import com.dungnh8.truyen_ngon_tinh.ServiceRegistry;
 import com.dungnh8.truyen_ngon_tinh.config.BookConfig;
 import com.dungnh8.truyen_ngon_tinh.database.model.Book;
+import com.dungnh8.truyen_ngon_tinh.database.model.Chap;
+import com.dungnh8.truyen_ngon_tinh.listener.OnGetBookDetailListener;
 import com.dungnh8.truyen_ngon_tinh.listener.OnGetBooksFromServerListener;
 import com.dungnh8.truyen_ngon_tinh.parser.BookParser;
 
@@ -22,6 +24,32 @@ public class BookNetwork extends BaseNetwork {
     public BookNetwork() {
         volley = (MyVolley) ServiceRegistry.getService(MyVolley.TAG);
         parser = (BookParser) ServiceRegistry.getService(BookParser.TAG);
+    }
+
+    public void getBookDetail(String api, int index, final OnGetBookDetailListener listener) {
+        String url = String.format("%s&index=%d", api, index);
+        Log.i(TAG, url);
+        MyRequest request = new MyRequest(
+            MyRequest.Method.GET,
+            url,
+            new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        List<Chap> chaps = parser.parseChaps(response);
+                        listener.onSuccess(chaps);
+                    } catch (Exception e) {
+                        listener.onFailed(e);
+                    }
+                }
+            },
+            new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    listener.onFailed(error);
+                }
+            });
+        volley.addToRequestQueue(request);
     }
 
     public void getBooksFromServer(boolean isSearching, String keyword, int bookType, int pageIndex, int limit, final OnGetBooksFromServerListener listener) {

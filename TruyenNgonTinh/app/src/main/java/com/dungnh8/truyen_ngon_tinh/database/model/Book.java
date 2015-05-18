@@ -5,6 +5,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
+import java.util.List;
 
 @DatabaseTable(tableName = "book")
 public class Book implements Serializable {
@@ -22,6 +23,13 @@ public class Book implements Serializable {
         public static final String CAT_NAME = "cat_name";
         public static final String STATUS = "status";
         public static final String TOTAL_OF_CHAPS = "total_of_chaps";
+        public static final String TOTAL = "total";
+        public static final String PAGES = "pages";
+        public static final String CURRENT_PAGE = "current_page";
+        public static final String NEXT_PAGE = "next_page";
+        public static final String PREV_PAGE = "prev_page";
+        public static final String CHAPS = "chaps";
+        public static final String CURRENT_CHAP = "current_chap";
         public static final String IS_READ = "is_read";
         public static final String IS_FAVORITE = "is_favorite";
         public static final String UPDATED_AT = "updated_at";
@@ -60,6 +68,26 @@ public class Book implements Serializable {
 
     @DatabaseField(columnName = Fields.TOTAL_OF_CHAPS)
     private String totalOfChaps;
+
+    @DatabaseField(columnName = Fields.TOTAL)
+    private int total;
+
+    @DatabaseField(columnName = Fields.PAGES)
+    private int pages;
+
+    @DatabaseField(columnName = Fields.CURRENT_PAGE)
+    private int currentPage;
+
+    @DatabaseField(columnName = Fields.NEXT_PAGE)
+    private int nextPage;
+
+    @DatabaseField(columnName = Fields.PREV_PAGE)
+    private int prevPage;
+
+    private List<Chap> chaps;
+
+    @DatabaseField(columnName = Fields.CURRENT_CHAP)
+    private int currentChap;
 
     @DatabaseField(columnName = Fields.IS_READ)
     private boolean isRead = false;
@@ -178,6 +206,72 @@ public class Book implements Serializable {
         this.totalOfChaps = totalOfChaps;
     }
 
+    @JsonProperty("total")
+    public int getTotal() {
+        return total;
+    }
+
+    @JsonProperty("total")
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    @JsonProperty("pages")
+    public int getPages() {
+        return pages;
+    }
+
+    @JsonProperty("pages")
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
+
+    @JsonProperty("current_page")
+    public int getCurrentPage() {
+        return currentPage;
+    }
+
+    @JsonProperty("current_page")
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    @JsonProperty("next_page")
+    public int getNextPage() {
+        return nextPage;
+    }
+
+    @JsonProperty("next_page")
+    public void setNextPage(int nextPage) {
+        this.nextPage = nextPage;
+    }
+
+    @JsonProperty("prev_page")
+    public int getPrevPage() {
+        return prevPage;
+    }
+
+    @JsonProperty("prev_page")
+    public void setPrevPage(int prevPage) {
+        this.prevPage = prevPage;
+    }
+
+    public List<Chap> getChaps() {
+        return chaps;
+    }
+
+    public void setChaps(List<Chap> chaps) {
+        this.chaps = chaps;
+    }
+
+    public int getCurrentChap() {
+        return currentChap;
+    }
+
+    public void setCurrentChap(int currentChap) {
+        this.currentChap = currentChap;
+    }
+
     public boolean isRead() {
         return isRead;
     }
@@ -211,11 +305,16 @@ public class Book implements Serializable {
             ", description='" + description + '\'' +
             ", api='" + api + '\'' +
             ", thumbnail='" + thumbnail + '\'' +
-            ", view=" + view +
+            ", view='" + view + '\'' +
             ", author='" + author + '\'' +
             ", catName='" + catName + '\'' +
             ", status='" + status + '\'' +
             ", totalOfChaps='" + totalOfChaps + '\'' +
+            ", total=" + total +
+            ", pages=" + pages +
+            ", currentPage=" + currentPage +
+            ", nextPage=" + nextPage +
+            ", prevPage=" + prevPage +
             ", isRead=" + isRead +
             ", isFavorite=" + isFavorite +
             ", updatedAt=" + updatedAt +
