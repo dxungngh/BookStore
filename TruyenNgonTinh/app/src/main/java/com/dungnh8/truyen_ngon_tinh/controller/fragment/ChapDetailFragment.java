@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.Toast;
 
 import com.dungnh8.truyen_ngon_tinh.R;
 import com.dungnh8.truyen_ngon_tinh.ServiceRegistry;
@@ -49,15 +50,15 @@ public class ChapDetailFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        getChapDetail();
+        getChapDetail(chap.getServerId(), chap.getApi());
     }
 
     private void drawChap(Chap chap) {
         contentWebView.loadData(chap.getContent(), "text/html; charset=utf-8", "UTF-8");
     }
 
-    private void getChapDetail() {
-        chapBusiness.getChapDetail(chap, new OnGetChapDetailListener() {
+    private void getChapDetail(long serverId, String api) {
+        chapBusiness.getChapDetail(serverId, api, new OnGetChapDetailListener() {
             @Override
             public void onSuccess(Chap result) {
                 chap = result;
@@ -69,6 +70,25 @@ public class ChapDetailFragment extends Fragment {
                 Log.e(TAG, "getChapDetail", error);
             }
         });
+    }
+
+    public void goTo(long chapServerId, String chapApi) {
+        getChapDetail(chapServerId, chapApi);
+    }
+
+    public void goToNextChap() {
+        if (chap.getNextChap() <= 0) {
+            Toast.makeText(getActivity(), getString(R.string.error_last_chap), Toast.LENGTH_LONG)
+                .show();
+        } else {
+            goTo(chap.getNextChap(), chap.getNextApi());
+        }
+    }
+
+    public void goToPrevChap() {
+        if (chap.getPrevChap() > 0) {
+            goTo(chap.getPrevChap(), chap.getPrevApi());
+        }
     }
 
     private void initData() {

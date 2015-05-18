@@ -3,6 +3,8 @@ package com.dungnh8.truyen_ngon_tinh.controller.activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.dungnh8.truyen_ngon_tinh.R;
@@ -13,6 +15,8 @@ import com.dungnh8.truyen_ngon_tinh.database.model.Chap;
 
 public class ChapDetailActivity extends BaseActivity {
     private static final String TAG = ChapDetailActivity.class.getSimpleName();
+
+    private ChapDetailFragment fragment;
 
     private Chap chap;
 
@@ -25,12 +29,28 @@ public class ChapDetailActivity extends BaseActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.chap_detail_actions, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == android.R.id.home) {
-            onBackPressed();
+        switch (id) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            case R.id.action_back:
+                goToPrevChap();
+                return true;
+            case R.id.action_next:
+                goToNextChap();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     private void drawActionBar() {
@@ -43,14 +63,23 @@ public class ChapDetailActivity extends BaseActivity {
 
     private void drawBookDetailFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
+        fragment = ChapDetailFragment.newInstance(chap);
         fragmentManager.beginTransaction()
-            .replace(R.id.book_detail_container, ChapDetailFragment.newInstance(chap))
+            .replace(R.id.book_detail_container, fragment)
             .commit();
     }
 
     private void drawComponentViews() {
         drawActionBar();
         drawBookDetailFragment();
+    }
+
+    private void goToNextChap() {
+        fragment.goToNextChap();
+    }
+
+    private void goToPrevChap() {
+        fragment.goToPrevChap();
     }
 
     private void initData() {

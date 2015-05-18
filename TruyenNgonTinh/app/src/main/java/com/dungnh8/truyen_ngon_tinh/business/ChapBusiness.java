@@ -21,12 +21,12 @@ public class ChapBusiness {
         return dataSource.getChapByServerId(serverChapId);
     }
 
-    public void getChapDetail(Chap chap, final OnGetChapDetailListener listener) {
-        Chap localChap = getChapFromDatabase(chap.getServerId());
+    public void getChapDetail(long serverId, String api, final OnGetChapDetailListener listener) {
+        Chap localChap = getChapFromDatabase(serverId);
         if (localChap != null) {
             listener.onSuccess(localChap);
         } else {
-            network.getChapDetail(chap.getApi(), new OnGetChapDetailListener() {
+            network.getChapDetail(api, new OnGetChapDetailListener() {
                 @Override
                 public void onSuccess(Chap result) {
                     dataSource.createChap(result);

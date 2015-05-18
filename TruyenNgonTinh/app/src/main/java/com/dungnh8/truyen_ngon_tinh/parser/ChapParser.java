@@ -17,6 +17,22 @@ public class ChapParser {
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         Chap chap = mapper.readValue(data.toString(), new TypeReference<Chap>() {
         });
+
+        if (data.has("next")) {
+            JSONObject nextObject = data.getJSONObject("next");
+            long nextChapId = nextObject.getLong("id");
+            String nextChapApi = nextObject.getString("api");
+            chap.setNextChap(nextChapId);
+            chap.setNextApi(nextChapApi);
+        }
+        if (data.has("prev")) {
+            JSONObject prevObject = data.getJSONObject("prev");
+            long prevChapId = prevObject.getLong("id");
+            String prevChapApi = prevObject.getString("api");
+            chap.setPrevChap(prevChapId);
+            chap.setPrevApi(prevChapApi);
+        }
+
         return chap;
     }
 }

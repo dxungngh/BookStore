@@ -52,8 +52,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
                           int newVersion) {
         try {
             Log.i(TAG, "upgrade: " + oldVersion + "--" + newVersion);
-            if (oldVersion < 2 || (oldVersion > newVersion)) {
+            if (oldVersion < 10 || (oldVersion > newVersion)) {
                 resetAllDatabase(db);
+                onCreate(db, connectionSource);
             } else if (oldVersion < newVersion) {
                 for (int i = oldVersion; i < newVersion; i++) {
                     String methodName = "updateFromDatabaseVersion" + i;
@@ -102,10 +103,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     private void resetAllDatabase(SQLiteDatabase db) {
         try {
+            Log.i(TAG, "drop all tables");
             TableUtils.dropTable(connectionSource, Book.class, true);
+            TableUtils.dropTable(connectionSource, BookType.class, true);
+            TableUtils.dropTable(connectionSource, Chap.class, true);
             onCreate(db, connectionSource);
         } catch (Exception e) {
-            Log.e(TAG, "", e);
+            Log.e(TAG, "resetAllDatabase", e);
         }
     }
 }

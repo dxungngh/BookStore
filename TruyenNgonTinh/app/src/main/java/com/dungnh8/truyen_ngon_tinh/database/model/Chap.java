@@ -15,6 +15,10 @@ public class Chap implements Serializable {
         public static final String TITLE = "title";
         public static final String API = "api";
         public static final String CONTENT = "content";
+        public static final String NEXT_CHAP = "next_chap";
+        public static final String NEXT_API = "next_api";
+        public static final String PREV_CHAP = "prev_chap";
+        public static final String PREV_API = "prev_api";
     }
 
     @DatabaseField(allowGeneratedIdInsert = true, canBeNull = false, columnName = Fields.ID,
@@ -30,6 +34,14 @@ public class Chap implements Serializable {
     private String api;
     @DatabaseField(columnName = Fields.CONTENT)
     private String content;
+    @DatabaseField(columnName = Fields.NEXT_CHAP)
+    private long nextChap;
+    @DatabaseField(columnName = Fields.NEXT_API)
+    private String nextApi;
+    @DatabaseField(columnName = Fields.PREV_CHAP)
+    private long prevChap;
+    @DatabaseField(columnName = Fields.PREV_API)
+    private String prevApi;
 
     public long getId() {
         return id;
@@ -89,6 +101,38 @@ public class Chap implements Serializable {
         this.content = content;
     }
 
+    public long getNextChap() {
+        return nextChap;
+    }
+
+    public void setNextChap(long nextChap) {
+        this.nextChap = nextChap;
+    }
+
+    public long getPrevChap() {
+        return prevChap;
+    }
+
+    public void setPrevChap(long prevChap) {
+        this.prevChap = prevChap;
+    }
+
+    public String getNextApi() {
+        return nextApi;
+    }
+
+    public void setNextApi(String nextApi) {
+        this.nextApi = nextApi;
+    }
+
+    public String getPrevApi() {
+        return prevApi;
+    }
+
+    public void setPrevApi(String prevApi) {
+        this.prevApi = prevApi;
+    }
+
     @Override
     public String toString() {
         return "Chap{" +
@@ -97,6 +141,11 @@ public class Chap implements Serializable {
             ", storyId=" + storyId +
             ", title='" + title + '\'' +
             ", api='" + api + '\'' +
+            ", content='" + content + '\'' +
+            ", nextChap=" + nextChap +
+            ", nextApi='" + nextApi + '\'' +
+            ", prevChap=" + prevChap +
+            ", prevApi='" + prevApi + '\'' +
             '}';
     }
 }
