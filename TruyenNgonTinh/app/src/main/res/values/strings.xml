@@ -15,5 +15,7 @@
     <string name="back">Back</string>
     <string name="next">Next</string>
 
+    <string name="current_chap">Chương đang đọc:&#160;</string>
+
     <string name="error_last_chap">Bạn đang đọc chap mới nhất, truyện sẽ tiếp tục cập nhật. Hãy click vào quảng cáo để ủng hộ tác giả bạn nhé.</string>
 </resources>

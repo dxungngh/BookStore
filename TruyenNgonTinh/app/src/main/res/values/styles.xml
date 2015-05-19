@@ -64,5 +64,14 @@
         <item name="android:paddingRight">@dimen/row_chap_padding_right</item>
     </style>
 
+    <style name="MyApp.BookDetail.CurrentChap" parent="MyApp.BookDetail">
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textColor">@color/action_bar</item>
+        <item name="android:background">@drawable/row_chap_bg</item>
+        <item name="android:paddingLeft">@dimen/row_chap_padding_left</item>
+        <item name="android:paddingTop">@dimen/row_chap_padding_top</item>
+        <item name="android:paddingBottom">@dimen/row_chap_padding_bottom</item>
+        <item name="android:paddingRight">@dimen/row_chap_padding_right</item>
+    </style>
 
 </resources>

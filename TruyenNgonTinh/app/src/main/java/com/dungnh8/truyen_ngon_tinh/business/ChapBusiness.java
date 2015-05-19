@@ -17,7 +17,7 @@ public class ChapBusiness {
         dataSource = (ChapDataSource) ServiceRegistry.getService(ChapDataSource.TAG);
     }
 
-    private Chap getChapFromDatabase(long serverChapId) {
+    public Chap getChapFromDatabase(long serverChapId) {
         return dataSource.getChapByServerId(serverChapId);
     }
 

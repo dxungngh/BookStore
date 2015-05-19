@@ -79,11 +79,20 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/fragment_book_detail_current_chap"
+        style="@style/MyApp.BookDetail.CurrentChap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_book_detail_description"
+        android:text="@string/current_chap"/>
+
+
     <com.startapp.android.publish.banner.Banner
         android:id="@+id/startAppBanner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/fragment_book_detail_description"
+        android:layout_below="@id/fragment_book_detail_current_chap"
         android:layout_centerHorizontal="true"/>
 
     <ListView
