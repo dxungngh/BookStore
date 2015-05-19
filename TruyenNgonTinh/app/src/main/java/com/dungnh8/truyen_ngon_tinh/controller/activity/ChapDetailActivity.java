@@ -11,6 +11,7 @@ import com.dungnh8.truyen_ngon_tinh.R;
 import com.dungnh8.truyen_ngon_tinh.config.ExtrasConfig;
 import com.dungnh8.truyen_ngon_tinh.controller.BaseActivity;
 import com.dungnh8.truyen_ngon_tinh.controller.fragment.ChapDetailFragment;
+import com.dungnh8.truyen_ngon_tinh.database.model.Book;
 import com.dungnh8.truyen_ngon_tinh.database.model.Chap;
 
 public class ChapDetailActivity extends BaseActivity {
@@ -18,6 +19,7 @@ public class ChapDetailActivity extends BaseActivity {
 
     private ChapDetailFragment fragment;
 
+    private Book book;
     private Chap chap;
 
     @Override
@@ -63,7 +65,7 @@ public class ChapDetailActivity extends BaseActivity {
 
     private void drawBookDetailFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragment = ChapDetailFragment.newInstance(chap);
+        fragment = ChapDetailFragment.newInstance(book, chap);
         fragmentManager.beginTransaction()
             .replace(R.id.book_detail_container, fragment)
             .commit();
@@ -83,6 +85,7 @@ public class ChapDetailActivity extends BaseActivity {
     }
 
     private void initData() {
+        book = (Book) getIntent().getSerializableExtra(ExtrasConfig.BOOK);
         chap = (Chap) getIntent().getSerializableExtra(ExtrasConfig.CHAP);
     }
 }

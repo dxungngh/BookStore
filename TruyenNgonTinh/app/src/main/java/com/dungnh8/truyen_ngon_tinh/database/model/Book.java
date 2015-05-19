@@ -87,7 +87,7 @@ public class Book implements Serializable {
     private List<Chap> chaps;
 
     @DatabaseField(columnName = Fields.CURRENT_CHAP)
-    private int currentChap;
+    private long currentChap;
 
     @DatabaseField(columnName = Fields.IS_READ)
     private boolean isRead = false;
@@ -264,11 +264,11 @@ public class Book implements Serializable {
         this.chaps = chaps;
     }
 
-    public int getCurrentChap() {
+    public long getCurrentChap() {
         return currentChap;
     }
 
-    public void setCurrentChap(int currentChap) {
+    public void setCurrentChap(long currentChap) {
         this.currentChap = currentChap;
     }
 

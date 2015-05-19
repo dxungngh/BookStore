@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.dungnh8.truyen_ngon_tinh.controller.holder.ChapHolder;
+import com.dungnh8.truyen_ngon_tinh.database.model.Book;
 import com.dungnh8.truyen_ngon_tinh.database.model.Chap;
 
 import java.util.List;
@@ -15,12 +16,15 @@ import java.util.List;
 public class ChapAdapter extends BaseAdapter {
     public static final String TAG = ChapAdapter.class.getSimpleName();
 
+    private Book book;
     private List<Chap> chaps;
+
     private LayoutInflater mInflater;
     private Context context;
 
-    public ChapAdapter(Context context, List<Chap> chaps) {
+    public ChapAdapter(Context context, List<Chap> chaps, Book book) {
         this.context = context;
+        this.book = book;
         this.chaps = chaps;
         mInflater = LayoutInflater.from(context);
     }
@@ -53,7 +57,7 @@ public class ChapAdapter extends BaseAdapter {
         Chap chap = getItem(position);
         ChapHolder holder;
         if (convertView == null) {
-            holder = new ChapHolder(context, chap);
+            holder = new ChapHolder(context, book, chap);
             holder.initHolder(parent, convertView, position, mInflater);
         } else {
             holder = (ChapHolder) convertView.getTag();

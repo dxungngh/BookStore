@@ -81,7 +81,7 @@ public class BookDetailFragment extends Fragment {
         if (chapAdapter == null) {
             chapList = new ArrayList<>();
             chapList.addAll(chaps);
-            chapAdapter = new ChapAdapter(getActivity(), chapList);
+            chapAdapter = new ChapAdapter(getActivity(), chapList, book);
             chapsListView.setAdapter(chapAdapter);
         } else {
             chapList.addAll(chaps);

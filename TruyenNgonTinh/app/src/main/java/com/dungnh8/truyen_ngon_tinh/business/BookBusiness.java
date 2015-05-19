@@ -53,4 +53,21 @@ public class BookBusiness {
     public Book getBookFromDatabase(long serverBookId) {
         return dataSource.getBookByServerId(serverBookId);
     }
+
+    public List<Book> getHistoryBooks() {
+        return dataSource.getHistoryBooks();
+    }
+
+    public void saveCurrentChap(Book book, long currentChapServerId) {
+        Book localBook = getBookFromDatabase(book.getServerId());
+        if (localBook != null) {
+            localBook.setCurrentChap(currentChapServerId);
+            localBook.setIsRead(true);
+            dataSource.updateBook(book);
+        } else {
+            book.setCurrentChap(currentChapServerId);
+            book.setIsRead(true);
+            dataSource.createBook(book);
+        }
+    }
 }

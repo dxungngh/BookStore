@@ -8,6 +8,8 @@ import com.dungnh8.truyen_ngon_tinh.database.DatabaseManager;
 import com.dungnh8.truyen_ngon_tinh.database.model.Book;
 import com.j256.ormlite.stmt.PreparedQuery;
 
+import java.util.List;
+
 public class BookDataSource extends BaseDataSource {
     public static final String TAG = BookDataSource.class.getSimpleName();
 
@@ -15,6 +17,16 @@ public class BookDataSource extends BaseDataSource {
 
     public BookDataSource(Context context) {
         this.context = context;
+    }
+
+    public void createBook(Book book) {
+        try {
+            DatabaseHelper helper = DatabaseManager.getInstance(context).getHelper();
+            book.setUpdatedAt(System.currentTimeMillis());
+            helper.getBookDao().create(book);
+        } catch (Exception e) {
+            Log.e(TAG, "createBook", e);
+        }
     }
 
     public Book getBookByServerId(long serverId) {
@@ -27,6 +39,29 @@ public class BookDataSource extends BaseDataSource {
         } catch (Exception e) {
             Log.e(TAG, "getBookByServerId", e);
             return null;
+        }
+    }
+
+    public List<Book> getHistoryBooks() {
+        try {
+            DatabaseHelper helper = DatabaseManager.getInstance(context).getHelper();
+            PreparedQuery<Book> preparedQuery = helper.getBookDao().queryBuilder().where().eq(
+                Book.Fields.IS_READ, true).prepare();
+            List<Book> books = helper.getBookDao().query(preparedQuery);
+            return books;
+        } catch (Exception e) {
+            Log.e(TAG, "getHistoryBooks", e);
+            return null;
+        }
+    }
+
+    public void updateBook(Book book) {
+        try {
+            DatabaseHelper helper = DatabaseManager.getInstance(context).getHelper();
+            book.setUpdatedAt(System.currentTimeMillis());
+            helper.getBookDao().update(book);
+        } catch (Exception e) {
+            Log.e(TAG, "updateBook", e);
         }
     }
 }

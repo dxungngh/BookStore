@@ -11,7 +11,9 @@ import android.widget.Toast;
 
 import com.dungnh8.truyen_ngon_tinh.R;
 import com.dungnh8.truyen_ngon_tinh.ServiceRegistry;
+import com.dungnh8.truyen_ngon_tinh.business.BookBusiness;
 import com.dungnh8.truyen_ngon_tinh.business.ChapBusiness;
+import com.dungnh8.truyen_ngon_tinh.database.model.Book;
 import com.dungnh8.truyen_ngon_tinh.database.model.Chap;
 import com.dungnh8.truyen_ngon_tinh.listener.OnGetChapDetailListener;
 
@@ -20,12 +22,15 @@ public class ChapDetailFragment extends Fragment {
 
     private WebView contentWebView;
 
+    private Book book;
     private Chap chap;
 
+    private BookBusiness bookBusiness;
     private ChapBusiness chapBusiness;
 
-    public static ChapDetailFragment newInstance(Chap chap) {
+    public static ChapDetailFragment newInstance(Book book, Chap chap) {
         ChapDetailFragment fragment = new ChapDetailFragment();
+        fragment.book = book;
         fragment.chap = chap;
         return fragment;
     }
@@ -51,6 +56,7 @@ public class ChapDetailFragment extends Fragment {
     public void onResume() {
         super.onResume();
         getChapDetail(chap.getServerId(), chap.getApi());
+        bookBusiness.saveCurrentChap(book, chap.getServerId());
     }
 
     private void drawChap(Chap chap) {
@@ -92,6 +98,7 @@ public class ChapDetailFragment extends Fragment {
     }
 
     private void initData() {
+        bookBusiness = (BookBusiness) ServiceRegistry.getService(BookBusiness.TAG);
         chapBusiness = (ChapBusiness) ServiceRegistry.getService(ChapBusiness.TAG);
     }
 

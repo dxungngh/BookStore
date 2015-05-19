@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.dungnh8.truyen_ngon_tinh.R;
 import com.dungnh8.truyen_ngon_tinh.config.ExtrasConfig;
 import com.dungnh8.truyen_ngon_tinh.controller.activity.ChapDetailActivity;
+import com.dungnh8.truyen_ngon_tinh.database.model.Book;
 import com.dungnh8.truyen_ngon_tinh.database.model.Chap;
 
 public class ChapHolder extends BaseContentHolder {
@@ -21,10 +22,12 @@ public class ChapHolder extends BaseContentHolder {
     private TextView titleTextView;
     private View rowView;
 
+    private Book book;
     private Chap chap;
 
-    public ChapHolder(Context context, Chap chap) {
+    public ChapHolder(Context context, Book book, Chap chap) {
         this.context = context;
+        this.book = book;
         this.chap = chap;
         holder = this;
     }
@@ -63,6 +66,7 @@ public class ChapHolder extends BaseContentHolder {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ChapDetailActivity.class);
+                intent.putExtra(ExtrasConfig.BOOK, book);
                 intent.putExtra(ExtrasConfig.CHAP, chap);
                 context.startActivity(intent);
             }
