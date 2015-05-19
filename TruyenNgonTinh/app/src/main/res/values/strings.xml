@@ -6,7 +6,7 @@
 
     <string name="history">Đang Đọc</string>
     <string name="new_book">Truyện Mới</string>
-    <string name="favorite">Yêu Thích</string>
+    <string name="hot">Truyện Hot</string>
 
     <string name="author">Tác giả:&#160;</string>
     <string name="cat_name">Chuyên mục:&#160;</string>

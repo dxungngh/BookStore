@@ -58,6 +58,20 @@ public class BookBusiness {
         return dataSource.getHistoryBooks();
     }
 
+    public void getHotBooks(int pageIndex, final OnGetBooksFromServerListener listener) {
+        network.getHotBooks(pageIndex, 10, new OnGetBooksFromServerListener() {
+            @Override
+            public void onSuccess(List<Book> result) {
+                listener.onSuccess(result);
+            }
+
+            @Override
+            public void onFailed(Throwable error) {
+                listener.onFailed(error);
+            }
+        });
+    }
+
     public void saveCurrentChap(Book book, long currentChapServerId) {
         Book localBook = getBookFromDatabase(book.getServerId());
         if (localBook != null) {

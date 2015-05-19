@@ -78,6 +78,32 @@ public class BookNetwork extends BaseNetwork {
         volley.addToRequestQueue(request);
     }
 
+    public void getHotBooks(int pageIndex, int limit, final OnGetBooksFromServerListener listener) {
+        String url = getUrl(String.format("api?page=list-story&start=%d&limit=%d&type=hot", pageIndex * limit, limit));
+        Log.i(TAG, url);
+        MyRequest request = new MyRequest(
+            MyRequest.Method.GET,
+            url,
+            new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        List<Book> books = parser.parseListOfBooks(response);
+                        listener.onSuccess(books);
+                    } catch (Exception e) {
+                        listener.onFailed(e);
+                    }
+                }
+            },
+            new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    listener.onFailed(error);
+                }
+            });
+        volley.addToRequestQueue(request);
+    }
+
     private String getUrl(boolean isSearching, String keyword, int bookType, int pageIndex, int limit) {
         String url = BookConfig.BOOK_TYPE_LINK[bookType];
         if (!isSearching) {

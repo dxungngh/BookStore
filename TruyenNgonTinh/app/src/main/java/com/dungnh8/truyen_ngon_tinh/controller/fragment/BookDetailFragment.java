@@ -81,9 +81,13 @@ public class BookDetailFragment extends Fragment {
         authorTextView.setText(book.getAuthor());
         catNameTextView.setText(book.getCatName());
         shortContentTextView.setText(book.getDescription());
+
         if (book.getCurrentChap() > 0) {
+            currentChapTextView.setVisibility(View.VISIBLE);
             currentChap = chapBusiness.getChapFromDatabase(book.getCurrentChap());
             currentChapTextView.setText(getString(R.string.current_chap) + currentChap.getTitle());
+        } else {
+            currentChapTextView.setVisibility(View.GONE);
         }
     }
 
@@ -151,10 +155,12 @@ public class BookDetailFragment extends Fragment {
         currentChapTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ChapDetailActivity.class);
-                intent.putExtra(ExtrasConfig.BOOK, book);
-                intent.putExtra(ExtrasConfig.CHAP, currentChap);
-                startActivity(intent);
+                if (book.getCurrentChap() > 0) {
+                    Intent intent = new Intent(getActivity(), ChapDetailActivity.class);
+                    intent.putExtra(ExtrasConfig.BOOK, book);
+                    intent.putExtra(ExtrasConfig.CHAP, currentChap);
+                    startActivity(intent);
+                }
             }
         });
     }

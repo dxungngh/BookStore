@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.dungnh8.truyen_ngon_tinh.R;
 import com.dungnh8.truyen_ngon_tinh.config.ExtrasConfig;
 import com.dungnh8.truyen_ngon_tinh.controller.activity.MainActivity;
-import com.dungnh8.truyen_ngon_tinh.controller.fragment.tab.FavoriteTabFragment;
+import com.dungnh8.truyen_ngon_tinh.controller.fragment.tab.HotTabFragment;
 import com.dungnh8.truyen_ngon_tinh.controller.fragment.tab.HistoryTabFragment;
 import com.dungnh8.truyen_ngon_tinh.controller.fragment.tab.NewBookTabFragment;
 
@@ -65,8 +65,8 @@ public class MainFragment extends Fragment {
             tabHost.newTabSpec("tab2").setIndicator(getString(R.string.new_book), null),
             NewBookTabFragment.class, bundle);
         tabHost.addTab(
-            tabHost.newTabSpec("tab3").setIndicator(getString(R.string.favorite), null),
-            FavoriteTabFragment.class, null);
+            tabHost.newTabSpec("tab3").setIndicator(getString(R.string.hot), null),
+            HotTabFragment.class, null);
 
         tabHost.setCurrentTab(1);
     }
