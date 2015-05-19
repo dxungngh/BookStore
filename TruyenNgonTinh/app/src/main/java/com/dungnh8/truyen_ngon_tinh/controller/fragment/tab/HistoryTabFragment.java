@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import com.dungnh8.truyen_ngon_tinh.R;
@@ -15,7 +14,6 @@ import com.dungnh8.truyen_ngon_tinh.ServiceRegistry;
 import com.dungnh8.truyen_ngon_tinh.business.BookBusiness;
 import com.dungnh8.truyen_ngon_tinh.controller.adapter.BookAdapter;
 import com.dungnh8.truyen_ngon_tinh.database.model.Book;
-import com.dungnh8.truyen_ngon_tinh.utils.KeyboardUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +23,6 @@ public class HistoryTabFragment extends Fragment {
 
     private Handler handler;
     private ListView booksListView;
-    private EditText searchEditText;
     private BookAdapter adapter;
 
     private BookBusiness bookBusiness;
@@ -43,7 +40,6 @@ public class HistoryTabFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_book_list, container, false);
         initData();
         setComponentViews(rootView);
-        drawComponentViews();
         return rootView;
     }
 
@@ -51,7 +47,6 @@ public class HistoryTabFragment extends Fragment {
     public void onResume() {
         super.onResume();
         getHistoryBooks();
-        KeyboardUtil.hideSoftKeyboardOfEditText(getActivity(), searchEditText);
     }
 
     private void drawBooksList() {
@@ -72,10 +67,6 @@ public class HistoryTabFragment extends Fragment {
         });
     }
 
-    private void drawComponentViews() {
-        searchEditText.setVisibility(View.GONE);
-    }
-
     private void getHistoryBooks() {
         bookList = bookBusiness.getHistoryBooks();
         drawBooksList();
@@ -88,6 +79,5 @@ public class HistoryTabFragment extends Fragment {
 
     private void setComponentViews(View rootView) {
         booksListView = (ListView) rootView.findViewById(R.id.fragment_book_list_books);
-        searchEditText = (EditText) rootView.findViewById(R.id.fragment_book_list_search);
     }
 }

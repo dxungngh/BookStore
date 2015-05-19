@@ -34,6 +34,9 @@
         <activity
             android:name=".controller.activity.ChapDetailActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".controller.activity.SearchActivity"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name="com.startapp.android.publish.list3d.List3DActivity"

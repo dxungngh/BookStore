@@ -4,11 +4,24 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+    <EditText
+        android:id="@+id/fragment_book_list_search"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_book_list_search_height"
+        android:layout_marginBottom="@dimen/fragment_book_list_search_margin_vertical"
+        android:layout_marginLeft="@dimen/fragment_book_list_search_margin_horizontal"
+        android:layout_marginRight="@dimen/fragment_book_list_search_margin_horizontal"
+        android:layout_marginTop="@dimen/fragment_book_list_search_margin_vertical"
+        android:background="@drawable/search_edittext_bg"
+        android:imeActionLabel="@string/search"
+        android:imeOptions="actionSearch"
+        android:textSize="@dimen/text_size_small"/>
+
     <com.startapp.android.publish.banner.Banner
         android:id="@+id/startAppBanner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/fragment_book_list_search"
         android:layout_centerHorizontal="true"/>
 
     <ListView

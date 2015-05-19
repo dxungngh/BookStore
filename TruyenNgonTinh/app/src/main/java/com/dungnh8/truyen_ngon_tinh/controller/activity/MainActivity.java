@@ -1,11 +1,14 @@
 package com.dungnh8.truyen_ngon_tinh.controller.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.dungnh8.truyen_ngon_tinh.R;
 import com.dungnh8.truyen_ngon_tinh.config.BookConfig;
@@ -31,6 +34,8 @@ public class MainActivity extends ActionBarActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
             restoreActionBar();
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.main_actions, menu);
             return true;
         }
         return super.onCreateOptionsMenu(menu);
@@ -44,6 +49,18 @@ public class MainActivity extends ActionBarActivity
             .commit();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.action_search:
+                goToSearchScreen();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     private void drawNavigationDrawerFragment() {
         mNavigationDrawerFragment = (NavigationDrawerFragment)
             getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -51,6 +68,11 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
             R.id.navigation_drawer,
             (DrawerLayout) findViewById(R.id.drawer_layout));
+    }
+
+    private void goToSearchScreen() {
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
     }
 
     public void onSectionAttached(int number) {
