@@ -66,13 +66,14 @@ public class BookDetailFragment extends Fragment {
         setComponentViews(view);
         drawComponentViews();
         setAllListener();
+        getBookDetail();
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getBookDetail();
+        drawCurrentChap();
     }
 
     private void drawComponentViews() {
@@ -82,6 +83,10 @@ public class BookDetailFragment extends Fragment {
         catNameTextView.setText(book.getCatName());
         shortContentTextView.setText(book.getDescription());
 
+        drawCurrentChap();
+    }
+
+    private void drawCurrentChap() {
         if (book.getCurrentChap() > 0) {
             currentChapTextView.setVisibility(View.VISIBLE);
             currentChap = chapBusiness.getChapFromDatabase(book.getCurrentChap());

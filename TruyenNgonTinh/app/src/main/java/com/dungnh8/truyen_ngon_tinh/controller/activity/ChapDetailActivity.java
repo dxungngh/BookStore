@@ -9,7 +9,6 @@ import android.view.MenuItem;
 
 import com.dungnh8.truyen_ngon_tinh.R;
 import com.dungnh8.truyen_ngon_tinh.config.ExtrasConfig;
-import com.dungnh8.truyen_ngon_tinh.controller.BaseActivity;
 import com.dungnh8.truyen_ngon_tinh.controller.fragment.ChapDetailFragment;
 import com.dungnh8.truyen_ngon_tinh.database.model.Book;
 import com.dungnh8.truyen_ngon_tinh.database.model.Chap;

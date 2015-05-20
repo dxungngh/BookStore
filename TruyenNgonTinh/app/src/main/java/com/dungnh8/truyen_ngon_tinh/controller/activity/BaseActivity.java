@@ -1,4 +1,4 @@
-package com.dungnh8.truyen_ngon_tinh.controller;
+package com.dungnh8.truyen_ngon_tinh.controller.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;

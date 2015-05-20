@@ -1,6 +1,7 @@
 package com.dungnh8.truyen_ngon_tinh.controller.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,10 +17,12 @@ import com.dungnh8.truyen_ngon_tinh.business.ChapBusiness;
 import com.dungnh8.truyen_ngon_tinh.database.model.Book;
 import com.dungnh8.truyen_ngon_tinh.database.model.Chap;
 import com.dungnh8.truyen_ngon_tinh.listener.OnGetChapDetailListener;
+import com.dungnh8.truyen_ngon_tinh.task.CrawNextChapsTask;
 
 public class ChapDetailFragment extends Fragment {
     private static final String TAG = ChapDetailFragment.class.getSimpleName();
 
+    private Handler handler;
     private WebView contentWebView;
 
     private Book book;
@@ -27,6 +30,8 @@ public class ChapDetailFragment extends Fragment {
 
     private BookBusiness bookBusiness;
     private ChapBusiness chapBusiness;
+
+    private CrawNextChapsTask task;
 
     public static ChapDetailFragment newInstance(Book book, Chap chap) {
         ChapDetailFragment fragment = new ChapDetailFragment();
@@ -48,7 +53,6 @@ public class ChapDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chapt_detail, container, false);
         setComponentViews(view);
-        setAllListener();
         return view;
     }
 
@@ -56,11 +60,18 @@ public class ChapDetailFragment extends Fragment {
     public void onResume() {
         super.onResume();
         getChapDetail(chap.getServerId(), chap.getApi());
-        bookBusiness.saveCurrentChap(book, chap.getServerId());
     }
 
-    private void drawChap(Chap chap) {
-        contentWebView.loadData(chap.getContent(), "text/html; charset=utf-8", "UTF-8");
+    private void drawChap(final Chap chap) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                contentWebView.loadData(chap.getContent(), "text/html; charset=utf-8", "UTF-8");
+            }
+        });
+        bookBusiness.saveCurrentChap(book, chap.getServerId());
+        task = new CrawNextChapsTask(chap);
+        task.run();
     }
 
     private void getChapDetail(long serverId, String api) {
@@ -68,7 +79,9 @@ public class ChapDetailFragment extends Fragment {
             @Override
             public void onSuccess(Chap result) {
                 chap = result;
-                drawChap(chap);
+                if (chap != null) {
+                    drawChap(chap);
+                }
             }
 
             @Override
@@ -100,9 +113,7 @@ public class ChapDetailFragment extends Fragment {
     private void initData() {
         bookBusiness = (BookBusiness) ServiceRegistry.getService(BookBusiness.TAG);
         chapBusiness = (ChapBusiness) ServiceRegistry.getService(ChapBusiness.TAG);
-    }
-
-    private void setAllListener() {
+        handler = new Handler();
     }
 
     private void setComponentViews(View rootView) {
