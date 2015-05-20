@@ -45,8 +45,10 @@ public class BookDataSource extends BaseDataSource {
     public List<Book> getHistoryBooks() {
         try {
             DatabaseHelper helper = DatabaseManager.getInstance(context).getHelper();
-            PreparedQuery<Book> preparedQuery = helper.getBookDao().queryBuilder().where().eq(
-                Book.Fields.IS_READ, true).prepare();
+            PreparedQuery<Book> preparedQuery = helper.getBookDao().queryBuilder()
+                .orderBy(Book.Fields.UPDATED_AT, false)
+                .where().eq(Book.Fields.IS_READ, true)
+                .prepare();
             List<Book> books = helper.getBookDao().query(preparedQuery);
             return books;
         } catch (Exception e) {

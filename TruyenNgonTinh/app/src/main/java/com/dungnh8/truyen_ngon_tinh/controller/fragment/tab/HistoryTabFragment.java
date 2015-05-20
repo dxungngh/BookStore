@@ -40,13 +40,8 @@ public class HistoryTabFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_book_list, container, false);
         initData();
         setComponentViews(rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         getHistoryBooks();
+        return rootView;
     }
 
     private void drawBooksList() {
@@ -54,12 +49,8 @@ public class HistoryTabFragment extends Fragment {
             @Override
             public void run() {
                 try {
-                    if (adapter == null) {
-                        adapter = new BookAdapter(HistoryTabFragment.this.getActivity(), bookList);
-                        booksListView.setAdapter(adapter);
-                    } else {
-                        adapter.notifyDataSetChanged();
-                    }
+                    adapter = new BookAdapter(HistoryTabFragment.this.getActivity(), bookList);
+                    booksListView.setAdapter(adapter);
                 } catch (Exception e) {
                     Log.e(TAG, "drawBooksList", e);
                 }

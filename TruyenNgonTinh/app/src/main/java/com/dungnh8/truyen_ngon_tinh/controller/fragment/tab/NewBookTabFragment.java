@@ -47,27 +47,21 @@ public class NewBookTabFragment extends Fragment {
         initData();
         setComponentViews(rootView);
         setAllListeners();
+        drawBooksList(bookList, true);
+        getBooksFromServer();
         return rootView;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        getBooksFromServer();
-    }
-
-    private void drawBooksList(final List<Book> books) {
+    private void drawBooksList(final List<Book> books, final boolean isFirst) {
         handler.post(new Runnable() {
             @Override
             public void run() {
                 try {
-                    bookList.addAll(books);
-                    if (adapter == null) {
-                        adapter = new BookAdapter(NewBookTabFragment.this.getActivity(), bookList);
-                        booksListView.setAdapter(adapter);
-                    } else {
-                        adapter.notifyDataSetChanged();
+                    if (!isFirst) {
+                        bookList.addAll(books);
                     }
+                    adapter = new BookAdapter(NewBookTabFragment.this.getActivity(), bookList);
+                    booksListView.setAdapter(adapter);
                 } catch (Exception e) {
                     Log.e(TAG, "drawBooksList", e);
                 }
@@ -80,7 +74,7 @@ public class NewBookTabFragment extends Fragment {
             new OnGetBooksFromServerListener() {
                 @Override
                 public void onSuccess(List<Book> result) {
-                    drawBooksList(result);
+                    drawBooksList(result, false);
                     currentPage++;
                 }
 
