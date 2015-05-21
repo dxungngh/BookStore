@@ -7,6 +7,7 @@ import com.dungnh8.truyen_ngon_tinh.database.DatabaseHelper;
 import com.dungnh8.truyen_ngon_tinh.database.DatabaseManager;
 import com.dungnh8.truyen_ngon_tinh.database.model.Book;
 import com.j256.ormlite.stmt.PreparedQuery;
+import com.j256.ormlite.stmt.UpdateBuilder;
 
 import java.util.List;
 
@@ -60,8 +61,12 @@ public class BookDataSource extends BaseDataSource {
     public void updateBook(Book book) {
         try {
             DatabaseHelper helper = DatabaseManager.getInstance(context).getHelper();
-            book.setUpdatedAt(System.currentTimeMillis());
-            helper.getBookDao().update(book);
+            UpdateBuilder<Book, Integer> updateBuilder = helper.getBookDao().updateBuilder();
+            updateBuilder.updateColumnValue(Book.Fields.UPDATED_AT, System.currentTimeMillis());
+            updateBuilder.updateColumnValue(Book.Fields.CURRENT_CHAP, book.getCurrentChap());
+            updateBuilder.updateColumnValue(Book.Fields.IS_READ, book.isRead());
+            updateBuilder.where().eq(Book.Fields.SERVER_ID, book.getServerId());
+            updateBuilder.update();
         } catch (Exception e) {
             Log.e(TAG, "updateBook", e);
         }

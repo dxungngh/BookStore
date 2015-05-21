@@ -68,6 +68,7 @@ public class ChapHolder extends BaseContentHolder {
                 Intent intent = new Intent(context, ChapDetailActivity.class);
                 intent.putExtra(ExtrasConfig.BOOK, book);
                 intent.putExtra(ExtrasConfig.CHAP, chap);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
         });

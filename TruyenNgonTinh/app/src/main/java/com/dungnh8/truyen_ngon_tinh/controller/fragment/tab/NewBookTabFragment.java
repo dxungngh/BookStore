@@ -60,8 +60,10 @@ public class NewBookTabFragment extends Fragment {
                     if (!isFirst) {
                         bookList.addAll(books);
                     }
-                    adapter = new BookAdapter(NewBookTabFragment.this.getActivity(), bookList);
-                    booksListView.setAdapter(adapter);
+                    if (bookList.size() > 0) {
+                        adapter = new BookAdapter(NewBookTabFragment.this.getActivity(), bookList);
+                        booksListView.setAdapter(adapter);
+                    }
                 } catch (Exception e) {
                     Log.e(TAG, "drawBooksList", e);
                 }

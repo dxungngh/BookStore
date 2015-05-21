@@ -69,6 +69,7 @@ public class ChapDetailFragment extends Fragment {
                 contentWebView.loadData(chap.getContent(), "text/html; charset=utf-8", "UTF-8");
             }
         });
+        Log.i(TAG, "current chap Id: " + chap.getServerId());
         bookBusiness.saveCurrentChap(book, chap.getServerId());
         task = new CrawNextChapsTask(chap);
         task.run();

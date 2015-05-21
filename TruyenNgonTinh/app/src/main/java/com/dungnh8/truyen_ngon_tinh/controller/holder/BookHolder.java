@@ -2,6 +2,7 @@ package com.dungnh8.truyen_ngon_tinh.controller.holder;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,6 @@ public class BookHolder extends BaseContentHolder {
         setConvertView(rowView);
         rowView.setTag(holder);
         this.rowView = rowView;
-        setALlListeners();
     }
 
     private void setALlListeners() {
@@ -64,12 +64,14 @@ public class BookHolder extends BaseContentHolder {
     public void setElements(Object obj) {
         book = (Book) obj;
         drawComponentView();
+        setALlListeners();
     }
 
     private void setRowClickListener() {
         rowView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i(TAG, "book: " + book);
                 Intent intent = new Intent(context, BookDetailActivity.class);
                 intent.putExtra(ExtrasConfig.BOOK, book);
                 context.startActivity(intent);

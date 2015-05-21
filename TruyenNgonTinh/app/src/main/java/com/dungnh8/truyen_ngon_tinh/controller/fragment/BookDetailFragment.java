@@ -48,11 +48,11 @@ public class BookDetailFragment extends Fragment {
     public static BookDetailFragment newInstance(Book book) {
         BookDetailFragment fragment = new BookDetailFragment();
         fragment.book = book;
+        fragment.initData();
         return fragment;
     }
 
     public BookDetailFragment() {
-        initData();
     }
 
     @Override
@@ -90,6 +90,7 @@ public class BookDetailFragment extends Fragment {
         if (book.getCurrentChap() > 0) {
             currentChapTextView.setVisibility(View.VISIBLE);
             currentChap = chapBusiness.getChapFromDatabase(book.getCurrentChap());
+            Log.i(TAG, "currentChapID: " + book.getCurrentChap());
             currentChapTextView.setText(getString(R.string.current_chap) + currentChap.getTitle());
         } else {
             currentChapTextView.setVisibility(View.GONE);
@@ -100,7 +101,7 @@ public class BookDetailFragment extends Fragment {
         if (chapAdapter == null) {
             chapList = new ArrayList<>();
             chapList.addAll(chaps);
-            chapAdapter = new ChapAdapter(getActivity(), chapList, book);
+            chapAdapter = new ChapAdapter(getActivity().getApplicationContext(), chapList, book);
             chapsListView.setAdapter(chapAdapter);
         } else {
             chapList.addAll(chaps);
@@ -128,6 +129,11 @@ public class BookDetailFragment extends Fragment {
     private void initData() {
         bookBusiness = (BookBusiness) ServiceRegistry.getService(BookBusiness.TAG);
         chapBusiness = (ChapBusiness) ServiceRegistry.getService(ChapBusiness.TAG);
+
+        Book localBook = bookBusiness.getBookFromDatabase(book.getServerId());
+        if (localBook != null) {
+            book = localBook;
+        }
     }
 
     private void setAllListener() {

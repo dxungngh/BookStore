@@ -77,7 +77,7 @@ public class BookBusiness {
         if (localBook != null) {
             localBook.setCurrentChap(currentChapServerId);
             localBook.setIsRead(true);
-            dataSource.updateBook(book);
+            dataSource.updateBook(localBook);
         } else {
             book.setCurrentChap(currentChapServerId);
             book.setIsRead(true);

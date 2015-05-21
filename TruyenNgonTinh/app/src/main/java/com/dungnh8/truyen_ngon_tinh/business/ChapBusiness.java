@@ -17,6 +17,15 @@ public class ChapBusiness {
         dataSource = (ChapDataSource) ServiceRegistry.getService(ChapDataSource.TAG);
     }
 
+    private Chap createChap(Chap chap) {
+        Chap localChap = dataSource.getChapByServerId(chap.getServerId());
+        if (localChap != null) {
+            return localChap;
+        }
+        dataSource.createChap(chap);
+        return chap;
+    }
+
     public Chap getChapFromDatabase(long serverChapId) {
         return dataSource.getChapByServerId(serverChapId);
     }
@@ -29,8 +38,8 @@ public class ChapBusiness {
             network.getChapDetail(api, new OnGetChapDetailListener() {
                 @Override
                 public void onSuccess(Chap result) {
-                    dataSource.createChap(result);
-                    listener.onSuccess(result);
+                    Chap chap = createChap(result);
+                    listener.onSuccess(chap);
                 }
 
                 @Override

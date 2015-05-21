@@ -315,6 +315,8 @@ public class Book implements Serializable {
             ", currentPage=" + currentPage +
             ", nextPage=" + nextPage +
             ", prevPage=" + prevPage +
+            ", chaps=" + chaps +
+            ", currentChap=" + currentChap +
             ", isRead=" + isRead +
             ", isFavorite=" + isFavorite +
             ", updatedAt=" + updatedAt +
