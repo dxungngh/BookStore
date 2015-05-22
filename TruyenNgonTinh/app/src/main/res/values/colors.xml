@@ -3,4 +3,5 @@
     <color name="sliding_menu">#DBDBDB</color>
     <color name="action_bar">@android:color/holo_red_dark</color>
     <color name="gray">#C0C0C0</color>
+    <color name="semi_transparent">#80FFFFFF</color>
 </resources>

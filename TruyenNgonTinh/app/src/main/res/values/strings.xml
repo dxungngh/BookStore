@@ -18,4 +18,10 @@
     <string name="current_chap">Chương đang đọc:&#160;</string>
 
     <string name="error_last_chap">Bạn đang đọc chap mới nhất, truyện sẽ tiếp tục cập nhật. Hãy click vào quảng cáo để ủng hộ tác giả bạn nhé.</string>
+
+    <string name="yes">Có</string>
+    <string name="no">Không</string>
+    <string name="close">Đóng</string>
+
+    <string name="message_exit_app">Bạn hãy đánh giá 5 sao cho phần mềm nhé :)</string>
 </resources>

@@ -1,21 +1,22 @@
 package com.dungnh8.truyen_ngon_tinh.controller.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.dungnh8.truyen_ngon_tinh.R;
 import com.dungnh8.truyen_ngon_tinh.config.BookConfig;
 import com.dungnh8.truyen_ngon_tinh.controller.fragment.MainFragment;
 import com.dungnh8.truyen_ngon_tinh.controller.fragment.NavigationDrawerFragment;
 
-public class MainActivity extends ActionBarActivity
+public class MainActivity extends BaseActivity
     implements NavigationDrawerFragment.NavigationDrawerCallbacks {
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -28,6 +29,32 @@ public class MainActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         drawNavigationDrawerFragment();
+    }
+
+    @Override
+    public void onBackPressed() {
+        showConfirmPopup(
+            getString(R.string.app_name),
+            getString(R.string.message_exit_app),
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    String uri = String.format("market://details?id=%s", getPackageName());
+                    intent.setData(Uri.parse(uri));
+                    startActivity(intent);
+                    MainActivity.this.onBackPressed();
+                    finish();
+                }
+            },
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MainActivity.this.onBackPressed();
+                    finish();
+                }
+            },
+            true);
     }
 
     @Override

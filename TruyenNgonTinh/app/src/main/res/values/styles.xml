@@ -74,4 +74,49 @@
         <item name="android:paddingRight">@dimen/row_chap_padding_right</item>
     </style>
 
+    <!-- Dialog -->
+    <style name="MyApp.Dialog"/>
+
+    <style name="MyApp.Dialog.Title">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingTop">@dimen/dialog_padding_top</item>
+        <item name="android:paddingBottom">@dimen/dialog_padding_bottom</item>
+    </style>
+
+    <style name="MyApp.Dialog.Message">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:paddingLeft">@dimen/dialog_padding_left</item>
+        <item name="android:paddingRight">@dimen/dialog_padding_right</item>
+        <item name="android:paddingTop">@dimen/dialog_padding_top</item>
+        <item name="android:paddingBottom">@dimen/dialog_padding_bottom</item>
+    </style>
+
+    <style name="MyApp.Dialog.Button">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/dialog_error_button_height</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textColor">@android:color/holo_blue_bright</item>
+    </style>
+
+    <style name="MyApp.Dialog.Button.LeftRightCorner" parent="MyApp.Dialog.Button">
+        <item name="android:background">@drawable/bg_dialog_corner_left_right_button</item>
+    </style>
+
+    <style name="MyApp.Dialog.Button.LeftCorner" parent="MyApp.Dialog.Button">
+        <item name="android:background">@drawable/bg_dialog_corner_left_button</item>
+    </style>
+
+    <style name="MyApp.Dialog.Button.RightCorner" parent="MyApp.Dialog.Button">
+        <item name="android:background">@drawable/bg_dialog_corner_right_button</item>
+    </style>
+
+    <style name="MyApp.Dialog.Button.NoCorner" parent="MyApp.Dialog.Button">
+        <item name="android:background">@drawable/bg_dialog_no_corner_button</item>
+    </style>
+
 </resources>

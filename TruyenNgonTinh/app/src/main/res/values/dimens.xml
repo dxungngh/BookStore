@@ -41,4 +41,23 @@
     <dimen name="row_chap_padding_right">10dp</dimen>
     <dimen name="row_chap_padding_top">15dp</dimen>
     <dimen name="row_chap_padding_bottom">15dp</dimen>
+
+    <!-- dialog dedication editor -->
+    <dimen name="dialog_dedication_editor_padding_left">12dp</dimen>
+    <dimen name="dialog_dedication_editor_padding_right">12dp</dimen>
+    <dimen name="dialog_dedication_editor_padding_top">12dp</dimen>
+    <dimen name="dialog_dedication_editor_min_height">150dp</dimen>
+    <dimen name="dialog_dedication_editor_width">250dp</dimen>
+
+    <!-- dialog loading -->
+    <dimen name="dialog_loading_width">100dp</dimen>
+    <dimen name="dialog_loading_height">100dp</dimen>
+
+    <!-- dialog error -->
+    <dimen name="dialog_error_width">250dp</dimen>
+    <dimen name="dialog_error_button_height">50dp</dimen>
+    <dimen name="dialog_padding_right">10dp</dimen>
+    <dimen name="dialog_padding_left">10dp</dimen>
+    <dimen name="dialog_padding_top">10dp</dimen>
+    <dimen name="dialog_padding_bottom">10dp</dimen>
 </resources>

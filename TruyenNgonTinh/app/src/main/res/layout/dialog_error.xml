@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="@dimen/dialog_error_width"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_dialog"
+                android:minWidth="@dimen/dialog_loading_width">
+
+    <TextView
+        android:id="@+id/dialog_error_title"
+        style="@style/MyApp.Dialog.Title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/dialog_error_message"
+        style="@style/MyApp.Dialog.Message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialog_error_title"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"/>
+
+    <ImageView
+        android:id="@+id/dialog_error_divider"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/dialog_error_message"
+        android:src="@drawable/bg_divider"/>
+
+    <Button
+        android:id="@+id/dialog_error_close"
+        style="@style/MyApp.Dialog.Button.LeftRightCorner"
+        android:layout_below="@id/dialog_error_divider"
+        android:layout_centerHorizontal="true"
+        android:text="@string/close"/>
+
+</RelativeLayout>
