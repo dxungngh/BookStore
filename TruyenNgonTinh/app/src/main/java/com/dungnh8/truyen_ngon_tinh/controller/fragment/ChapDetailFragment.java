@@ -14,6 +14,7 @@ import com.dungnh8.truyen_ngon_tinh.R;
 import com.dungnh8.truyen_ngon_tinh.ServiceRegistry;
 import com.dungnh8.truyen_ngon_tinh.business.BookBusiness;
 import com.dungnh8.truyen_ngon_tinh.business.ChapBusiness;
+import com.dungnh8.truyen_ngon_tinh.controller.activity.BaseActivity;
 import com.dungnh8.truyen_ngon_tinh.database.model.Book;
 import com.dungnh8.truyen_ngon_tinh.database.model.Chap;
 import com.dungnh8.truyen_ngon_tinh.listener.OnGetChapDetailListener;
@@ -76,9 +77,12 @@ public class ChapDetailFragment extends Fragment {
     }
 
     private void getChapDetail(long serverId, String api) {
+        final BaseActivity baseActivity = (BaseActivity) getActivity();
+        baseActivity.showLoadingDialog(baseActivity);
         chapBusiness.getChapDetail(serverId, api, new OnGetChapDetailListener() {
             @Override
             public void onSuccess(Chap result) {
+                baseActivity.hideLoadingDialog();
                 chap = result;
                 if (chap != null) {
                     drawChap(chap);

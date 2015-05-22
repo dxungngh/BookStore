@@ -1,5 +1,6 @@
 package com.dungnh8.truyen_ngon_tinh.controller.activity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
@@ -8,6 +9,7 @@ import android.view.View;
 
 import com.dungnh8.truyen_ngon_tinh.widget.ConfirmDialog;
 import com.dungnh8.truyen_ngon_tinh.widget.ErrorDialog;
+import com.dungnh8.truyen_ngon_tinh.widget.LoadingDialog;
 import com.startapp.android.publish.StartAppAd;
 
 public class BaseActivity extends ActionBarActivity {
@@ -18,6 +20,7 @@ public class BaseActivity extends ActionBarActivity {
     private Handler handler;
     private ConfirmDialog confirmDialog;
     private ErrorDialog errorDialog;
+    private LoadingDialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class BaseActivity extends ActionBarActivity {
     public void onPause() {
         super.onPause();
         startAppAd.onPause();
+        hideLoadingDialog();
     }
 
     @Override
@@ -56,6 +60,22 @@ public class BaseActivity extends ActionBarActivity {
                     confirmDialog = null;
                 } catch (Exception e) {
                     Log.e(TAG, "hideConfirmPopup", e);
+                }
+            }
+        });
+    }
+
+    public void hideLoadingDialog() {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (loadingDialog != null) {
+                        loadingDialog.dismiss();
+                    }
+                    loadingDialog = null;
+                } catch (Exception e) {
+                    Log.e(TAG, "hideLoadingDialog", e);
                 }
             }
         });
@@ -95,6 +115,27 @@ public class BaseActivity extends ActionBarActivity {
                         yesOnClickListener, noOnClickListener, yesTitle, noTitle, isCancelable);
                     if (confirmDialog != null) {
                         confirmDialog.show();
+                    }
+                }
+            });
+        }
+    }
+
+    public void showLoadingDialog(final Activity activity) {
+        hideLoadingDialog();
+        if (loadingDialog == null && !isFinishing() && !activity.isFinishing()) {
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        loadingDialog = LoadingDialog.getInstance(activity);
+                        if (loadingDialog != null && !loadingDialog.isShowing()
+                            && !activity.isFinishing() && !isFinishing()) {
+                            loadingDialog.show();
+                        }
+                    } catch (Exception e) {
+                        Log.e(TAG, "showLoadingDialog", e);
+                        hideLoadingDialog();
                     }
                 }
             });
