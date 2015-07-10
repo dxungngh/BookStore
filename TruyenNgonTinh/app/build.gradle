@@ -5,11 +5,11 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.dungnh8.truyen_ngon_tinh"
+        applicationId "com.dungnh8.tieu_thuyet_ngon_tinh"
         minSdkVersion 14
         targetSdkVersion 21
-        versionCode 1
-        versionName "1.0"
+        versionCode 4
+        versionName "3.1"
     }
     buildTypes {
         debug {
@@ -37,5 +37,6 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-databind:2.5.3'
     compile 'com.fasterxml.jackson.core:jackson-core:2.5.3'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.5.3'
+    compile 'com.github.ksoichiro:android-observablescrollview:1.3.1'
     compile files('libs/StartAppInApp-3.0.jar')
 }

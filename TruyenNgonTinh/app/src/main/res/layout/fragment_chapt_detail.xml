@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"/>
 
-    <WebView
+    <com.github.ksoichiro.android.observablescrollview.ObservableWebView
         android:id="@+id/fragment_chap_detail_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
