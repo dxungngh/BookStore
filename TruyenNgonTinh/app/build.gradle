@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.dungnh8.tieu_thuyet_ngon_tinh"
+        applicationId "com.dungnh8.truyen_ngon_tinh_new_version"
         minSdkVersion 14
         targetSdkVersion 21
         versionCode 5

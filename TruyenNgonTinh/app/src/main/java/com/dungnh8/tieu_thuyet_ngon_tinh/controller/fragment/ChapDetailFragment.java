@@ -1,5 +1,7 @@
 package com.dungnh8.tieu_thuyet_ngon_tinh.controller.fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -8,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.widget.Toast;
 
 import com.dungnh8.tieu_thuyet_ngon_tinh.R;
@@ -26,6 +29,8 @@ import com.github.ksoichiro.android.observablescrollview.ScrollState;
 
 public class ChapDetailFragment extends Fragment implements ObservableScrollViewCallbacks {
     private static final String TAG = ChapDetailFragment.class.getSimpleName();
+
+    private static final int DEFAULT_TEXT_SIZE = 15;
 
     private Handler handler;
     private ObservableWebView contentWebView;
@@ -102,7 +107,10 @@ public class ChapDetailFragment extends Fragment implements ObservableScrollView
         handler.post(new Runnable() {
             @Override
             public void run() {
+                int textSize = getTextSize();
                 contentWebView.loadData(chap.getContent(), "text/html; charset=utf-8", "UTF-8");
+                final WebSettings webSettings = contentWebView.getSettings();
+                webSettings.setDefaultFontSize(textSize);
             }
         });
         Log.i(TAG, "current chap Id: " + chap.getServerId());
@@ -154,6 +162,29 @@ public class ChapDetailFragment extends Fragment implements ObservableScrollView
         bookBusiness = (BookBusiness) ServiceRegistry.getService(BookBusiness.TAG);
         chapBusiness = (ChapBusiness) ServiceRegistry.getService(ChapBusiness.TAG);
         handler = new Handler();
+    }
+
+    public void modifyTextSize(boolean isIncreasing) {
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        int textSize = getTextSize();
+
+        SharedPreferences.Editor editor = sharedPref.edit();
+        if (isIncreasing) {
+            textSize += 2;
+        } else {
+            textSize -= 2;
+        }
+        editor.putInt(getString(R.string.tieu_thuyet_ngon_tinh_text_size), textSize);
+        editor.commit();
+
+        final WebSettings webSettings = contentWebView.getSettings();
+        webSettings.setDefaultFontSize(textSize);
+    }
+
+    private int getTextSize() {
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        int textSize = sharedPref.getInt(getString(R.string.tieu_thuyet_ngon_tinh_text_size), DEFAULT_TEXT_SIZE);
+        return textSize;
     }
 
     private void setAllListeners() {

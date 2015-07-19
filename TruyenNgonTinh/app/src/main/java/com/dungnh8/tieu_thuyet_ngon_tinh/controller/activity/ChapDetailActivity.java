@@ -49,6 +49,12 @@ public class ChapDetailActivity extends BaseActivity {
             case R.id.action_next:
                 goToNextChap();
                 return true;
+            case R.id.action_increase_text_size:
+                modifyTextSize(true);
+                return true;
+            case R.id.action_decrease_text_size:
+                modifyTextSize(false);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -81,6 +87,10 @@ public class ChapDetailActivity extends BaseActivity {
 
     private void goToPrevChap() {
         fragment.goToPrevChap();
+    }
+
+    private void modifyTextSize(boolean isIncreasing) {
+        fragment.modifyTextSize(isIncreasing);
     }
 
     private void initData() {

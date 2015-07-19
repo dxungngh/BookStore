@@ -10,4 +10,13 @@
         android:icon="@drawable/ic_next"
         android:title="@string/next"
         yourapp:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_increase_text_size"
+        android:title="@string/increase_text_size"
+        yourapp:showAsAction="collapseActionView"/>
+    <item
+        android:id="@+id/action_decrease_text_size"
+        android:title="@string/decrease_text_size"
+        yourapp:showAsAction="collapseActionView"/>
 </menu>
